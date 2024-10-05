@@ -1,4 +1,17 @@
 /*
+Prompt for gemini
+Given an image of a food item(s), identify the type and quantity of each distinct food present. Your response should be formatted as follows: <food name> <quantity>, separated by commas. For example, if there are 3 apples and 2 bananas, return apples 3, bananas 2. If the quantity cannot be determined for a particular food, set its quantity as 1 (e.g., bread 1, strawberries 1). If no recognizable food items are present, respond with "invalid input, try again". Ensure the output only includes food names and quantities, and avoid adding additional information or comments. Also, make sure that all items are as simple as possible, so a granny smith apple is just an apple. 
+Your return should be of the JSON format { "Foods": [{"name":  "food1", "quantity": food1ammount}, {"name":"food2", "quantity":food2quantity}]}
+
+an example would be
+{ "Foods": [{"name":  "carrot", "quantity": 2}, {"name":"banana", "quantity":1}]}
+
+Once again if an item isn't food, your output should be the words "invalid input, try again".
+Animals that are alive should not be considered food items. 
+*/
+
+
+/*
  * Install the Generative AI SDK
  *
  * $ npm install @google/generative-ai
