@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Capture with Back Button</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: #ADE8B4;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+    }
+
+    #content-area {
+      padding: 20px;
+      padding-bottom: 100px; /* Ensure content doesn't overlap with footer */
+      position: relative;
+    }
+
+    /* Container for images to be displayed side by side */
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .image-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .image-item p {
+      margin: 10px 0;
+    }
+
+    /* Larger video stream in the top-right corner with green outline */
+    video {
+      position: fixed; /* This ensures the video stays in the top-right corner of the page */
+      top: 10px;
+      right: 10px;
+      width: 300px;
+      height: 200px;
+      border: 5px solid #ADE8B4;
+      z-index: 1000; /* Ensures it stays on top of other elements */
+    }
+
+    #login-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #login-modal .modal-content {
+      background-color: #ADE8B4;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    /* Back button that redirects to the home page */
+    .back-button {
+      display: inline-block;
+      background-color: #ADE8B4;
+      border: 2px solid black;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #90c257;
+    }
+
+    /* Fixed Footer for buttons */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer button {
+      background-color: #ADE8B4; /* Pastel Green */
+      border: 2px solid black;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 15px; /* Rounded */
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .footer button:hover {
+      background-color: #90c257; /* Darker Pastel Green on hover */
+    }
+
+    /* Circular Add Photo Button */
+    .footer .add-photo-btn {
+      background-color: #ADE8B4;
+      border: 2px solid black;
+      color: black;
+      padding: 15px;
+      border-radius: 50%; /* Circular */
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .footer .add-photo-btn:hover {
+      background-color: #90c257;
+    }
+
+    canvas {
+      display: none;
+    }
+
+    /* Style for the Submit button that appears after taking the photo */
+    .footer .submitPhotoBtn {
+      display: none;
+      background-color: #ADE8B4;
+      border: 2px solid black;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .footer .submitPhotoBtn:hover {
+      background-color: #90c257;
+    }
+
+    /* "Take a Photo" Title fixed at the bottom of the page */
+    h1 {
+      position: fixed;
+      bottom: 80px; /* Placed above the footer */
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: #ADE8B4;
+      margin: 0;
+      z-index: 999;
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 600px) {
+      .image-item img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .footer .add-photo-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      video {
+        width: 150px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back button that redirects to the home page -->
+  <a href="/" class="back-button">Back</a>
+
+  <!-- Main content area -->
+  <div id="content-area">
+    <div class="image-container" id="imageContainer"></div>
+
+    <!-- Video stream from the camera -->
+    <video id="video" autoplay playsinline></video>
+
+    <!-- Canvas to capture the image -->
+    <canvas id="canvas"></canvas>
+
+  </div>
+
+  <!-- Title fixed at the bottom of the page -->
+  <h1>Take a Photo</h1>
+
+  <!-- Footer with buttons -->
+  <div class="footer">
+    <button class="add-photo-btn" id="capturePhotoBtn">+</button>
+    <button id="submitPhotoBtn">Submit</button>
+  </div>
+
+  <script>
+    // Get the elements
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const capturePhotoBtn = document.getElementById('capturePhotoBtn');
+    const imageContainer = document.getElementById('imageContainer');
+    const submitPhotoBtn = document.getElementById('submitPhotoBtn');
+    let photoTaken = false; // Flag to track if a photo has been taken
+
+    // Automatically open the camera when the page loads
+    window.onload = function () {
+      openCamera();
+    };
+
+    // Function to start the camera stream
+    function openCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            video.srcObject = stream;
+            video.style.display = 'block'; // Show the video element
+          })
+          .catch(error => {
+            console.error('Error accessing the camera: ', error);
+          });
+      } else {
+        alert('Camera is not supported on your browser.');
+      }
+    }
+
+    // Function to capture the photo
+    function takePhoto() {
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const dataURL = canvas.toDataURL('image/png');
+
+      // Create an image element to display the captured photo
+      const img = document.createElement('img');
+      img.src = dataURL;
+
+      const imageItem = document.createElement('div');
+      imageItem.classList.add('image-item');
+      imageItem.appendChild(img);
+      
+      // Add the new photo to the image container
+      imageContainer.appendChild(imageItem);
+
+      // Show the submit button only after one photo is taken
+      if (!photoTaken) {
+        submitPhotoBtn.style.display = 'block';
+        photoTaken = true; // Set flag to true after first photo
+      }
+    }
+
+    // Event listeners
+    capturePhotoBtn.addEventListener('click', takePhoto);
+
+    // Submit photo event
+    submitPhotoBtn.addEventListener('click', () => {
+      alert('Photo submitted successfully!');
+      window.location.href = '/index.html';
+    });
+  </script>
+
+</body>
+</html>
