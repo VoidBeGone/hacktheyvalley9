@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camera Capture with Back Button</title>
   <style>
-    body {
+     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: black;
@@ -190,7 +190,7 @@
 <body>
 
   <!-- Back button that redirects to the home page -->
-  <a href="/" class="back-button">Back</a>
+  
 
   <!-- Main content area -->
   <div id="content-area">
@@ -207,10 +207,16 @@
   <!-- Title fixed at the bottom of the page -->
   <h1>Take a Photo</h1>
 
+  <!-- Form to submit the photos -->
+  <form id="AddImageForm" action='/api/images/' method="POST" enctype="multipart/form-data">
+    <!-- We will append the captured image here -->
+  </form>
+
   <!-- Footer with buttons -->
   <div class="footer">
     <button class="add-photo-btn" id="capturePhotoBtn">+</button>
     <button id="submitPhotoBtn">Submit</button>
+    <button id="backBtn">Back</button>
   </div>
 
   <script>
@@ -220,6 +226,7 @@
     const capturePhotoBtn = document.getElementById('capturePhotoBtn');
     const imageContainer = document.getElementById('imageContainer');
     const submitPhotoBtn = document.getElementById('submitPhotoBtn');
+    const form = document.getElementById('AddImageForm'); // Get the form element
     let photoTaken = false; // Flag to track if a photo has been taken
 
     // Automatically open the camera when the page loads
@@ -263,6 +270,15 @@
       // Add the new photo to the image container
       imageContainer.appendChild(imageItem);
 
+      // Convert the captured image to a Blob and append it to the form as a file
+      canvas.toBlob(function(blob) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'hidden';
+        fileInput.name = 'photos';
+        fileInput.value = dataURL; // If your backend can handle base64, otherwise convert to blob as a file
+        form.appendChild(fileInput); // Append the hidden input to the form
+      }, 'image/png');
+
       // Show the submit button only after one photo is taken
       if (!photoTaken) {
         submitPhotoBtn.style.display = 'block';
@@ -273,9 +289,19 @@
     // Event listeners
     capturePhotoBtn.addEventListener('click', takePhoto);
 
+    backBtn.addEventListener('click', ()=>{
+      window.location.herf = '/index.html';
+    });
+
     // Submit photo event
     submitPhotoBtn.addEventListener('click', () => {
-      alert('Photo submitted successfully!');
+      // Submit the form
+      form.submit();
+
+      // Optionally, show a success alert
+      alert('Photo(s) submitted successfully!');
+
+      // Redirect if necessary
       window.location.href = '/index.html';
     });
   </script>
