@@ -101,7 +101,7 @@ async function processImageWithGemini(file) {
 }
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
 
