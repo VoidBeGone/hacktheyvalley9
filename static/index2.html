@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./style/main.css">
+        <script type="module" src="./index.mjs"></script>
+        <title>Refridge</title>
+    </head>
+    <header>
+        <span>Refridge</span>
+    </header>
+    <body>
+        <h1>HELLO</h1>
+        <form class="complex-form" id="add-image-form" action='/api/fridgesnap/uplaod/' method="POST" enctype="multipart/form-data">
+            <div class="form-title">Add a new image to the gallery</div>
+            <input type="text" id="image-title" class="form-element" placeholder="Enter image title" name="title" required="">
+            <input type="text" id="author-name" class="form-element" placeholder="Enter author name" name="author" required="">
+            <input type="file" name="picture" class="form_element" required />
+            <button type="submit" class="btn">Add image</button>
+          </form>
+    </body>
+    <footer>
+        <button class="btn">My FridgeSnaps</button>
+        <button class="btn">faef</button>
+        <button class="btn">Kitchen</button>
+        <button class="btn">Favorites</button>
+    </footer>
+</html> 
