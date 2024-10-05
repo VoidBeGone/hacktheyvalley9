@@ -12,6 +12,10 @@ const FoodSchema = new mongoose.Schema({
 })
 
 const FridgeSnapSchema = new mongoose.Schema({
+    uid: {
+        type: String,
+        required: true
+    },
     date_added: {
       type: Date,
       required: true,

@@ -6,6 +6,7 @@ const clientOptions = { serverApi: { version: '1', strict: true, deprecationErro
 export async function connectDB() {
   try {
     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+    console.log("try to ping")
     await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
@@ -21,5 +22,20 @@ export async function addFridgeSnap(fs) {
     return result.insertedId;
 }
 
+export async function getFridgeSnaps(uid) {
+    const result = await mongoose.connection.db.collection("refridge").find({uid});
+    return result;
+}
+
 export async function initDB() {
+}
+
+export async function pingDB() {
+    try {
+        await mongoose.connect(uri, clientOptions);
+        await mongoose.connection.db.admin().command({ ping: 1 });
+        console.log("PINGED");
+    } finally {
+        await mongoose.disconnect();
+    }
 }
