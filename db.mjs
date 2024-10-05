@@ -1,36 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose"
 
-const connectDB = async () => {
+const uri = "mongodb+srv://jasonsqian:RY98MRmDSfduc1rK@refridge.drymp.mongodb.net/?retryWrites=true&w=majority&appName=Refridge";
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+export async function connectDB() {
   try {
-    const conn = await mongoose.connect('your_connection_string_here', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1); // Exit process with failure
+    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await mongoose.disconnect();
   }
-};
-
-const DogSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      required: true,
-    },
-    breed: {
-      type: String,
-      required: true,
-    },
-    age: {
-      type: Number,
-      required: true,
-    },
-    isGoodBoy: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-  });
-
-module.exports = connectDB;
+}
+connectDB;

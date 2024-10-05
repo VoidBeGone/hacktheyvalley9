@@ -1,24 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose"
 
-const ImageEntry = new mongoose.Schema({
-    _id: {
-      type: Number,
-      required: true,
-    },
-    date_added: {
-      type: Date,
-      required: true,
-    },
-    image: {
-        type: File,
-        required: true
-    },
-    food: [{
-      type: Food
-    }]
-  });
-
-const Food = new mongoose.Schema({
+const FoodSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -28,3 +10,24 @@ const Food = new mongoose.Schema({
         required: true
     }
 })
+
+const FridgeSnapSchema = new mongoose.Schema({
+    _id: {
+      type: Number,
+      required: true,
+    },
+    date_added: {
+      type: Date,
+      required: true,
+    },
+    image_path: {
+        type: String,
+        required: true
+    },
+    food: [{
+      type: FoodSchema
+    }]
+  });
+
+export const FoodModel = mongoose.model("FoodModel", FoodSchema);
+export const FridgeSnapModel = mongoose.model("ImageModel", FridgeSnapSchema);

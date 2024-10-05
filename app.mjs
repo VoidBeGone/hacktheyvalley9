@@ -4,8 +4,8 @@ import express from "express";
 import multer from "multer";
 const upload = multer({ dest: './uploads/' });
 
-const mongoose = require("mongoose");
-const { ImageEntry, Food } = require("./models.mjs");
+import mongoose from "mongoose"
+import { FridgeSnapModel, FoodModel } from "./models.mjs";
 
 const PORT = 3000;
 
@@ -21,9 +21,21 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/", async (req, res) => {
+// create
+
+app.post("/api/fridgesnap", (req, res) => {
+    
+})
+
+// read
+
+app.get("/api/test", async (req, res) => {
     return res.json({ message: "Hello, World ✌️" });
 });
+
+//
+
+// delete
 
 // app.get("/images", async (req, res) => {
 //     const allDogs = await Dog.find();
@@ -36,8 +48,12 @@ app.get("/", async (req, res) => {
 //     return res.status(200).json(dog);
 // });
 
+import {connectDB} from "./db.mjs"
+
+
 export const server = createServer(app).listen(PORT, function (err) {
     if (err) console.log(err);
     else console.log("HTTP server on http://localhost:%s", PORT);
 });
+connectDB().catch((err) => console.log(err));
   
