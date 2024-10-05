@@ -12,10 +12,6 @@ import { FridgeSnapModel, FoodModel } from "./models.mjs";
 
 
 
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
 
 
 const PORT = 3000;
@@ -61,7 +57,7 @@ app.post("/api/documents/",upload.array('picture'), function(req,res,next){
 
 
 //retriving photo from database 
-app.get("/api/images/:count", function(req,res,next){
+app.get("/api/fridgesnap/:id/images/:count", function(req,res,next){
   DB.find.sort({createdAt:-1}).limit(parseInt(req.params.count)).exec(function(err,photos){
     if (err) return res.status(500).send("cannot send image in database");
     return res.json(photos); //returning list of images
@@ -70,31 +66,38 @@ app.get("/api/images/:count", function(req,res,next){
 
 app.get("/api/images/retriving/:imageid", function(req,res,next){
   DB.findOne({_id:imageid}, function(err, photo){
-    if (err) return res.status(500).send("cannot retrive image in database");
+    if (err) return res.status(500).send("cannot retrieve image in database");
     res.setHeader('Content-Type', photo.mimetype);
     return res.sendFile(image.path, {root:"./"});
   })
 });
 
 
-
-
-
 // create
 
-app.post("/api/fridgesnap/upload", upload.single("picture"), (req, res) => {
-    const name = req.body.name;
-    const items = req.body.items;
-    const fs = new FridgeSnapModel({
-        name, items, picture,
-    });
+app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
+  try {
+      const name = req.body.name;
+      
+      const items = [new FoodModel("pizza", "4")];
+      //const items = req.body.items;
+      const image_path = req.file ? req.file.path : null;  // Assuming you're saving the path of the uploaded picture
+      const uid = 0;
 
+      const fs = new FridgeSnapModel({
+          date_added: Date.now(), 
+          name: name, 
+          food: items,
+          uid: uid
+      });
 
-    function geminiCV(file) {
-        return [];
-    }
-    geminiCV(req.body.file)
-})
+      const ret = await addFridgeSnap(fs);  // Assuming addFridgeSnap is a function that saves the document to the database
+
+      res.status(201).json({ message: "FridgeSnap uploaded successfully", data: ret });
+  } catch (error) {
+      res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
+  }
+});
 
 // read
 
@@ -105,25 +108,12 @@ app.get("/api/users/:uid/fridgesnaps", async (req, res) => {
 
 app.get("/api/test", async (req, res) => {
     pingDB();
-    res.json({ message: "hello"});
+    res.json({ message: "hello" });
 })
 
 // 
 
 // delete
-
-// app.get("/images", async (req, res) => {
-//     const allDogs = await Dog.find();
-//     return res.status(200).json(allDogs);
-// });
-  
-// app.get("/images/:", async (req, res) => {
-//     const { id } = req.params;
-//     const dog = await Dog.findById(id);
-//     return res.status(200).json(dog);
-// });
-
-
 export const server = createServer(app).listen(PORT, function (err) {
     if (err) console.log(err);
     else console.log("HTTP server on http://localhost:%s", PORT);
