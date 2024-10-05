@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food & Recipe App</title>
+  <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: #ADE8B4;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+    }
+
+    #content-area {
+      padding: 20px;
+      padding-bottom: 100px; /* Ensure content doesn't overlap with footer */
+    }
+
+    .image-item {
+      margin-bottom: 20px;
+    }
+
+    .image-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .image-item p {
+      margin: 10px 0;
+    }
+
+    /* Login Modal */
+    #login-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    #login-modal .modal-content {
+        background-color: #ADE8B4;
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 300px;
+        width: 100%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #form-title {
+        text-align: center;
+        font-size: 24px;
+        color: #05668D; /* Darker shade for contrast */
+    }
+
+    #login-form input,
+    #signup-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #05668D; /* Consistent border color */
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    #login-submit-btn,
+    #signup-submit-btn,
+    #toggle-signup-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #028090; /* Button color for consistency */
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #login-submit-btn:hover,
+    #signup-submit-btn:hover,
+    #toggle-signup-btn:hover {
+        background-color: #b1e3f7; /* Slightly darker on hover */
+    }
+
+    #error-message {
+        color: #D62828; /* Red for error messages */
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #toggle-signup-btn {
+        background-color: transparent; /* No background for toggle button */
+        color: #028090; /* Match button color */
+        margin-top: 10px;
+    }
+
+    #toggle-signup-btn:hover {
+        color: #05668D; /* Darker hover effect */
+    }
+
+
+    /* Fixed Footer for buttons */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000000;
+      display: flex;
+      justify-content: right;
+      padding: 15px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .header button {
+      background-color: #ADE8B4; /* Pastel Green */
+      border: 2px solid black;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 40px; /* Rounded */
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .footer button {
+      background-color: #ADE8B4; /* Pastel Green */
+      border: 2px solid black;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 15px; /* Rounded */
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .footer button:hover {
+      background-color: #90c257; /* Darker Pastel Green on hover */
+    }
+    .header button:hover {
+      background-color: #90c257; /* Darker Pastel Green on hover */
+    }
+
+    /* Circular Add Photo Button */
+    .footer .add-photo-btn {
+      background-color: #ADE8B4;
+      border: 2px solid black;
+      color: black;
+      padding: 15px;
+      border-radius: 50%; /* Circular */
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .footer .add-photo-btn:hover {
+      background-color: #90c257;
+    }
+
+  </style>
+</head>
+<body>
+
+    <div id="content-area"></div>
+  
+    <!-- Login Modal -->
+    <div id="login-modal">
+      <div class="modal-content">
+        <h2 id="form-title">Login</h2>
+        <div id="login-form">
+          <input type="email" id="email" placeholder="Email"><br><br>
+          <input type="password" id="password" placeholder="Password"><br><br>
+          <button id="login-submit-btn">Login</button><br><br>
+          <button id="toggle-signup-btn">Create an Account</button>
+        </div>
+        <div id="signup-form" style="display:none;">
+          <input type="email" id="signup-email" placeholder="Email"><br><br>
+          <input type="password" id="signup-password" placeholder="Password"><br><br>
+          <button id="signup-submit-btn">Sign Up</button><br><br>
+          <button id="toggle-signup-btn">Back to Login</button>
+        </div>
+        <p id="error-message" style="color:red;"></p>
+      </div>
+    </div>
+    <div class="header">
+        <button id="login-btn">Login</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
+    <!-- Footer with buttons -->
+    <div class="footer">
+      <button id="food-btn">Food</button>
+      <button id="recipe-btn">Recipes</button>
+      <button class="add-photo-btn" id="add-btn">+</button>
+
+    </div>
+
+  <div id="content-area"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjGZyLVPKFaoKviEufK9E1Q-oKo3gClHo",
+      authDomain: "hackthevally-e2037.firebaseapp.com",
+      projectId: "hackthevally-e2037",
+      storageBucket: "hackthevally-e2037.appspot.com",
+      messagingSenderId: "154910357932",
+      appId: "1:154910357932:web:9bc9a8807cf6f1d2ff6209",
+      measurementId: "G-03TM5L500Q"
+    };
+  
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  
+    // Elements
+    const loginBtn = document.getElementById('login-btn');
+    const loginModal = document.getElementById('login-modal');
+    const loginSubmitBtn = document.getElementById('login-submit-btn');
+    const signupSubmitBtn = document.getElementById('signup-submit-btn');
+    const toggleSignupBtn = document.getElementById('toggle-signup-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const errorMessage = document.getElementById('error-message');
+    const formTitle = document.getElementById('form-title');
+    const foodBtn = document.getElementById('food-btn');
+    const recipeBtn = document.getElementById('recipe-btn');
+    const contentArea = document.getElementById('content-area');
+    
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const addBtn = document.getElementById('add-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+            window.location.href = 'imageCapture.html';
+            });
+        }
+        });
+
+    // Toggle between Login and Sign Up Forms
+    toggleSignupBtn.addEventListener('click', () => {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+  
+      if (loginForm.style.display === 'none') {
+        formTitle.textContent = 'Login';
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        toggleSignupBtn.textContent = 'Create an Account';
+      } else {
+        formTitle.textContent = 'Sign Up';
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        toggleSignupBtn.textContent = 'Back to Login';
+        
+      }
+    });
+  
+    // Show Modal when login button is clicked
+    loginBtn.addEventListener('click', () => {
+      loginModal.style.display = 'flex';
+    });
+  
+    // Login with Firebase Authentication
+    loginSubmitBtn.addEventListener('click', () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+  
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          loginModal.style.display = 'none';
+          loginBtn.style.display = 'none';
+          logoutBtn.style.display = 'block';
+        })
+        .catch(error => {
+          errorMessage.textContent = error.message;
+        });
+    });
+  
+    // Sign up with Firebase Authentication
+    signupSubmitBtn.addEventListener('click', () => {
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+  
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          loginModal.style.display = 'none';
+          loginBtn.style.display = 'none';
+          logoutBtn.style.display = 'block';
+        })
+        .catch(error => {
+          errorMessage.textContent = error.message;
+        });
+    });
+  
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      auth.signOut().then(() => {
+        loginBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+        contentArea.innerHTML = '';  // Clear content on logout
+      });
+    });
+  
+    // Check login state
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'block';
+      } else {
+        loginBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+      }
+    });
+  
+    // Infinite Scroll Logic
+    let page = 1;
+    let loading = false;
+    let currentType = '';
+  
+    // Handle Food button click (Infinite Scroll)
+    foodBtn.addEventListener('click', () => {
+      currentType = 'food';
+      contentArea.innerHTML = '';  // Clear content area
+      loadImagesAndText('food');
+    });
+  
+    // Handle Recipe button click (Infinite Scroll)
+    recipeBtn.addEventListener('click', () => {
+      currentType = 'recipes';
+      contentArea.innerHTML = '';  // Clear content area
+      loadImagesAndText('recipes');
+    });
+
+    addBtn.addEventListener('click', () => {
+        loadPage('addPhoto');
+    });
+  
+    // Load images and text dynamically (Infinite scroll)
+    function loadImagesAndText(type) {
+      if (loading) return;
+  
+      loading = true;
+      const imageUrls = generateMockData(type);
+  
+      imageUrls.forEach((item) => {
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-item');
+  
+        const img = document.createElement('img');
+        img.src = item.imageUrl;
+        img.alt = type;
+  
+        const text = document.createElement('p');
+        text.textContent = item.text;
+  
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(text);
+        contentArea.appendChild(imageContainer);
+      });
+  
+      loading = false;
+      page++;  // Load next set of data
+    }
+  
+    // Simulate generating data
+    function generateMockData(type) {
+      const mockData = [];
+  
+      for (let i = 0; i < 10; i++) {
+        mockData.push({
+          imageUrl: `https://via.placeholder.com/150?text=${type}+Image+${(page - 1) * 10 + i + 1}`,
+          text: `This is a ${type} description for item ${(page - 1) * 10 + i + 1}.`
+        });
+      }
+      return mockData;
+    }
+  
+    // Infinite scroll detection
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        loadImagesAndText(currentType);
+      }
+    });
+  </script>
+</body>
+</html>
