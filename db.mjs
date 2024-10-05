@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import { FridgeSnapModel, FoodModel } from "./models.mjs";
 
 const uri = "mongodb+srv://jasonsqian:RY98MRmDSfduc1rK@refridge.drymp.mongodb.net/?retryWrites=true&w=majority&appName=Refridge";
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
@@ -13,4 +14,12 @@ export async function connectDB() {
     await mongoose.disconnect();
   }
 }
-connectDB;
+
+export async function addFridgeSnap(fs) {
+    const result = await mongoose.connection.db.collection("refridge").insertOne(fs);
+    console.log("inserted fs with id "+result.insertedId);
+    return result.insertedId;
+}
+
+export async function initDB() {
+}
