@@ -57,6 +57,16 @@ const model = genAI.getGenerativeModel({
 `
 });
 
+async function uploadToGemini(filePath, mimeType) {
+  const uploadResult = await fileManager.uploadFile(filePath, {
+    mimeType,
+    displayName: path.basename(filePath),
+  });
+  const file = uploadResult.file;
+  console.log(`Uploaded file ${file.displayName} as: ${file.name}`);
+  return file;
+}
+
 async function processImageWithGemini(file) {
   try {
     if (!file) {
@@ -102,6 +112,10 @@ async function processImageWithGemini(file) {
     throw error;
   }
 }
+
+
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
