@@ -65,10 +65,8 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
     console.log(req.body);
 
     
-    const items = [{ name: "pizza", quantity: "4" }];  // Correct instantiation
-    //const items = req.body.items;
-    const image_path = req.file ? req.file.path : null;  // Assuming you're saving the path of the uploaded picture
-    const uid = 0;
+    const items = req.body.items;
+    const uid = req.body.uid;
 
     const fridgesnap = { 
       date_added: Date.now(), 
