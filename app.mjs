@@ -82,11 +82,11 @@ app.get("/api/fridgesnap/:id/images/:count", function(req,res,next){
 });
 
 // create
-
 app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
+  console.log('File received:', req.file); // Log the file information
+  console.log('Request body:', req.body);  // Log the additional form data (items, uid)
 
-    console.log(req.body);
-
+  const uid = req.body.uid;
 
     const items = await(addingFromGemini(req.file.path));
 
@@ -95,7 +95,6 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
     console.log("=========================")
 
 
-    const uid = req.body.uid;
 
     const fridgesnap = {  
       date_added: Date.now(), 
