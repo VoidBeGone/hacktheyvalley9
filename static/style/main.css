@@ -1,9 +1,14 @@
+
+
 body {
     margin: auto;
     padding-top: 100px;
     font-family: Arial, sans-serif;
-    background-color: #FAFAFA;
-    color: #ADE8B4;
+    background-image: url("../media/background.png");
+    background-color: rgba(206, 206, 206, 0.789);
+    background-size: 50%;
+    background-repeat:repeat;
+    color: #b6e8bc;
     
     display: flex;
     flex-direction: column;
@@ -15,6 +20,14 @@ body {
     overflow-y: hidden;
 }
 
+.logo{
+  position:absolute;
+  width:175px;
+  height:175px;
+  top:-48px;
+  left:0px;
+}
+
 #content-area {
     display: flex;
     flex-direction: column; /* Stacks items vertically */
@@ -22,13 +35,13 @@ body {
     align-items: center;
 
     overflow-y: scroll;
-    outline: 1px solid red;
+
     width: 100%;
     flex-basis: 80%;
 }
 
 * {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 
@@ -61,6 +74,29 @@ body {
 
 
 
+
+#login-btn, #logout-btn {
+  position: fixed;
+  top: 19px; /* Adjust the vertical position */
+  right: 10px; /* Adjust the horizontal position */
+  padding: 10px 20px;
+  background-color: #f5b9608d; /* You can adjust the background color */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1000; /* Ensures the buttons appear on top */
+}
+
+#login-btn:hover, #logout-btn:hover {
+  background-color: #b1e3f7; /* You can adjust the hover color */
+}
+
+#logout-btn {
+  display: none; /* Initially hide the logout button */
+}
+
+
 /* Login Modal */
 #login-modal {
     display: none;
@@ -75,7 +111,7 @@ body {
 }
 
 #login-modal .modal-content {
-    background-color: #ADE8B4;
+    background-color: #b6e8bc;
     padding: 20px;
     border-radius: 5px;
     max-width: 300px;
@@ -140,7 +176,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #4CAF50;
+  background:transparent;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: stretch;
@@ -153,44 +189,47 @@ button {
 }
 
 .header {
-    height: 70px;
+  height: 50px;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #b6e8bce8;
   display: flex;
   justify-content: space-around;
   padding: 15px 0;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius:15px;
+  opacity:1.2;
 }
 .header button {
-  background-color: #FF9800; 
+  background-color: #f5b9608d; 
   color: black;
   padding: 10px 20px;
   border-radius: 40px; /* Rounded */
   cursor: pointer;
   font-size: 16px;
+  
 }
 .footer button {
-  background-color: #ADE8B4; 
+  background-color: rgba(182, 232, 188, 0.9); 
   color: black;
   cursor: pointer;
   align-self: stretch;
   font-size: 16px;
   outline: 1px solid grey;
-  height: 70px;
+  height: 50px;
 }
 
 .footer button:hover {
-  background-color: #90c257; /* Darker Pastel Green on hover */
+  background-color: rgba(148, 219, 156, 0.9); /* Darker Pastel Green on hover */
 }
 .header button:hover {
-  background-color: #90c257; /* Darker Pastel Green on hover */
+  background-color: rgba(148, 219, 156, 0.9); /* Darker Pastel Green on hover */
 }
 
 /* Circular Add Photo Button */
 .footer .add-photo-btn {
-  background-color: #ADE8B4;
+  background-color: rgba(182, 232, 188, 0.9);
   color: black;
   padding: 15px;
 
@@ -201,9 +240,21 @@ button {
 }
 
 .footer .add-photo-btn:hover {
-  background-color: #90c257;
+  background-color: rgba(148, 219, 156, 0.9);
 }
 
 #content-area {
     justify-self: center;
+} 
+
+.bottombutton2{
+  border-radius: 0 10px 10px 0;
+}
+
+.bottombutton1{
+  border-radius: 10px 0 0 10px;
+}
+
+.helperstuff{
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.9);
 }
