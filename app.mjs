@@ -26,8 +26,44 @@ async function addingFromGemini(file, uid) {
     console.log(output);
     // Check if the output is valid and has the expected structure
     if (output && output.Foods) {
-      const uid_food = { uid: uid, foods: output.Foods };
-      await foods.insert(uid_food);
+      foods.findOne({ uid: uid }, function(err, uid_food) {
+        if (err) return res.status(500).end("Error accessing food database with uid " + uid);
+        
+        if (uid_food) {
+          // If `uid_food` exists, update the food list with the new foods
+          let existingFood = uid_food.food;
+      
+          // Merge the existing food items with the new items in `output.Foods`
+          output.Foods.forEach(newFoodItem => {
+            const index = existingFood.findIndex(foodItem => foodItem.name === newFoodItem.name);
+      
+            if (index !== -1) {
+              // Food item already exists, update the quantity
+              existingFood[index].quantity += newFoodItem.quantity;
+            } else {
+              // Food item does not exist, add it to the list
+              existingFood.push(newFoodItem);
+            }
+          });
+          
+          foods.remove({ uid: uid }, {}, function(err, numRemoved) {
+            if (err) return console.log(err);
+            console.log("poop");
+            // Insert the new entry with the merged list
+            foods.insert({ uid: uid, food: existingFood }, function(err) {
+              if (err) return console.log(err);
+              console.log("food inserted!")
+            });
+          });
+        } else {
+          // If no entry found, insert a new one with the given foods
+          foods.insert({ uid: uid, food: output.Foods }, function(err) {
+            if (err) return console.log(err);
+            console.log("new uid so new foods list")
+          });
+        }
+      });
+      
       console.log("food inserted for uid " + uid);
       return output.Foods;
       //addingRecipeFromGemini();
@@ -118,10 +154,17 @@ app.get("/api/fridgesnap/:id/generate_recipe", async (req, res) => {
 
 // read
 app.get("/api/users/:uid/food/generate_recipe", async (req, res) => { 
-  food.findOne( {uid: req.params.uid}, function(err, uid_food) {
+  foods.findOne( {uid: req.params.uid}, function(err, uid_food) {
       addingRecipeFromGemini(uid_food.food)
         .then((rec) => res.json(rec))
         .catch((err) => res.status(500).end("stupid generation error: "+err.message));
+  })
+});
+
+app.get("/api/users/:uid/food/", async (req, res) => { 
+  foods.findOne( {uid: req.params.uid}, function(err, uid_food) {
+    console.log(uid_food);
+      res.json(uid_food.food);
   })
 });
 

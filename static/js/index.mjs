@@ -97,6 +97,7 @@
     if (user) {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'block';
+      logoutBtn.textContent = "Logout "+user.email;
     } else {
       loginBtn.style.display = 'block';
       logoutBtn.style.display = 'none';
@@ -111,53 +112,56 @@
   // Handle Food button click (Infinite Scroll)
   foodBtn.addEventListener('click', () => {
     currentType = 'food';
-    contentArea.innerHTML = '';  // Clear content area
     loadFood();
   });
+
+  // Load images and text dynamically (Infinite scroll)
+  function loadFood() {
+    contentArea.innerHTML = '';  // Clear content area
+
+    if (loading) return;
+
+    loading = true;
+
+    const uid = auth.currentUser.uid;
+    console.log("hello")
+    console.log(uid);
+
+    getFridgeSnaps(onError, function(snaps) {
+        //snaps = generateMockData(type);
+        snaps.forEach((snap) => {
+            console.log(snap)
+            snap.food.forEach((food) =>  {
+                console.log(food)
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('image-item');
+            
+                const img = document.createElement('img');
+                img.src = "/api/fridgesnap/"+snap._id+"/image";
+                img.alt = snap._id;
+            
+                const text = document.createElement('p');
+                text.textContent = food.name + ": " + food.quantity;
+            
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(text);
+                contentArea.appendChild(imageContainer);
+            })
+
+        });
+        loading = false;
+    });
+}
   
   // Handle Recipe button click (Infinite Scroll)
   recipeBtn.addEventListener('click', () => {
     currentType = 'recipes';
     loadRecipes();
   });
-  
-  addBtn.addEventListener('click', () => {
-        
-  });
+
   
 
-    // Load images and text dynamically (Infinite scroll)
-    function loadFood() {
-        contentArea.innerHTML = '';  // Clear content area
-
-        if (loading) return;
     
-        loading = true;
-
-        const uid = auth.currentUser.uid;
-
-        getFridgeSnaps(uid, onError, function(snaps) {
-            //snaps = generateMockData(type);
-            snaps.forEach((snap) => {
-                console.log(snap)
-            const imageContainer = document.createElement('div');
-            imageContainer.classList.add('image-item');
-        
-            const img = document.createElement('img');
-            img.src = "/api/fridgesnap/"+snap._id+"/image";
-            img.alt = snap._id;
-        
-            const text = document.createElement('p');
-            text.textContent = snap.food.map((f) => `${f.name}: ${f.quantity}`).join('\n');
-        
-            imageContainer.appendChild(img);
-            imageContainer.appendChild(text);
-            contentArea.appendChild(imageContainer);
-            });
-            loading = false;
-            page++;  // Load next set of data
-        });
-    }
 
 
     // Load images and text dynamically (Infinite scroll)
@@ -168,9 +172,10 @@
     
         loading = true;
 
-        const uid = 0;
+        const uid = auth.currentUser.uid;
+        console.log(uid);
 
-        getFridgeSnaps(uid, onError, function(snaps) {
+        getFridgeSnaps( onError, function(snaps) {
             //snaps = generateMockData(type);
             snaps.forEach((snap) => {
                 console.log(snap)

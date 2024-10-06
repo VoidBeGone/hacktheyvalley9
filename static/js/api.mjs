@@ -13,7 +13,7 @@ function handleResponse(res) {
 async function getUID() {
   const user = auth.currentUser;
   if (user) {
-    return await user.getIdToken(); // Get the ID token
+    return await user.uid; // Get the ID token
   } else {
     throw new Error("User is not authenticated.");
   }
@@ -30,6 +30,14 @@ export function getFridgeSnaps(fail, success) {
 export function getRecipes(fail, success) {
   getUID()
     .then(uid => fetch(`/api/users/${uid}/recipes`))
+    .then(handleResponse)
+    .then(success)
+    .catch(fail);
+}
+
+export function getFoods( fail, success) {
+    getUID()
+    .then(uid => fetch(`/api/users/${uid}/food`))
     .then(handleResponse)
     .then(success)
     .catch(fail);
