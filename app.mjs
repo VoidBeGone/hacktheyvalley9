@@ -5,18 +5,45 @@ import Datastore from "nedb";
 
 import multer from "multer";
 const upload = multer({ dest: './uploads/' });
+import { run } from './foodClassifier.mjs';
 
 
-
-
-
-const PORT = 3000;
+const PORT = 4000;
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
  
 app.use(express.static("static"));
+
+
+const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
+
+async function addingFromGemini(file) {
+  try {
+    // Assuming run is an async function
+    const output = await run(file);
+    console.log(output);
+    // Check if the output is valid and has the expected structure
+    if (output && output.Foods) {
+      output.Foods.forEach(async function(fooditem) {
+        try {
+          // Assuming `foods.insert` is a function that inserts data into a database
+          const food = await foods.insert(fooditem); // Use async/await for better error handling
+        } catch (err) {
+          console.error('Failed to add food item:', err);
+          // Handle the error appropriately, e.g., return an error response in an API
+        }
+      });
+    } else {
+      console.error('Output structure is incorrect:', output);
+    }
+  } catch (error) {
+    console.error('Error in addingFromGemini:', error);
+  }
+}
+
+
 
 
 app.use(function (req, res, next) {
