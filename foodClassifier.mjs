@@ -87,5 +87,5 @@ export async function run(inputfile) {
     console.error('Error reading file or sending message:', error);
   }
 }
-run("foodtest.jpg");
+run("redbull.heic");
 // Run the function
