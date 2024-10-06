@@ -23,18 +23,21 @@
     <!-- Canvas to capture the image -->
     <canvas id="canvas"></canvas>
 
+    <form id="add-image-form" action='/api/fridgesnap/upload' method="POST" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="FridgeSnap Name" required>
+      <input type="text" name="items" placeholder="Items" required>
+      <input type="file" name="picture" required>
+      <input type="submit">
+    </form>
+
   </div>
 
-  <!-- Title fixed at the bottom of the page -->
+
+
   <h1>Take a Photo</h1>
 
   <!-- Form to submit the photos -->
-  <form id="AddImageForm" action='/api/fridgesnap/upload' method="POST" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="FridgeSnap Name" required>
-    <input type="text" name="items" placeholder="Items" required>
-    <input type="file" name="pictures" multiple required>
-    <input type="submit">
-  </form>
+
 
   <!-- Footer with buttons -->
   <div class="footer">

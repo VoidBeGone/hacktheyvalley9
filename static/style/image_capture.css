@@ -33,6 +33,8 @@
       margin: 10px 0;
     }
 
+    
+
     /* Larger video stream in the top-right corner with green outline */
     video {
       position: fixed; /* This ensures the video stays in the top-right corner of the page */
@@ -75,6 +77,11 @@
       cursor: pointer;
       font-size: 16px;
       margin-bottom: 20px;
+    }
+
+    #add-image-form {
+        display: flex;
+        flex-direction: column;
     }
 
     .back-button:hover {

@@ -48,13 +48,28 @@ function takePhoto() {
   // Add the new photo to the image container
   imageContainer.appendChild(imageItem);
 
-  // Convert the captured image to a Blob and append it to the form as a file
+  // Convert the captured image to a Blob and then to a File
   canvas.toBlob(function(blob) {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'hidden';
-    fileInput.name = 'photos';
-    fileInput.value = dataURL; // If your backend can handle base64, otherwise convert to blob as a file
-    form.appendChild(fileInput); // Append the hidden input to the form
+    // Create a file object with a unique name and type
+    const file = new File([blob], 'photo.png', { type: 'image/png' });
+
+    // Create a new FormData object to simulate form submission
+    const formData = new FormData();
+    formData.append('photos', file); // `photos` is the field name expected by `multer`
+
+    // Send the form data using fetch to the server endpoint that handles multer uploads
+    fetch('http://localhost:3000/fridgesnap/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Upload success:', data);
+    })
+    .catch(error => {
+      console.error('Error uploading file:', error);
+    });
+
   }, 'image/png');
 
   // Show the submit button only after one photo is taken
@@ -63,6 +78,7 @@ function takePhoto() {
     photoTaken = true; // Set flag to true after first photo
   }
 }
+
 
 // Event listeners
 capturePhotoBtn.addEventListener('click', takePhoto);

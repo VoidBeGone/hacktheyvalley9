@@ -1,14 +1,10 @@
 import { createServer } from "http";
 import express from "express";
 
-import { connectDB, addFridgeSnap, pingDB, getFridgeSnaps } from "./db.mjs"
-
+import Datastore from "nedb";
 
 import multer from "multer";
 const upload = multer({ dest: './uploads/' });
-
-import mongoose from "mongoose"
-import { FridgeSnapModel, FoodModel } from "./models.mjs";
 
 
 
@@ -28,22 +24,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+// dbs
+
+const FridgeSnapDB = new Datastore({ filename: './db/fridgesnap.db', autoload: true });
+
 //talking with the GOOGLE AI 
-
-
-
-
-//adding the image 
-function addingPhotoToDB(imageupload){
-  for (let i = 0; i < 3; i++){
-    DB.insert(imageupload, function(err,returnvalue){
-      if (err) console.log("wompy wompy this image fucking fucked up this many times " + i);
-      return returnvalue;
-    });
-  }
-  return -1;
-}
-
 
 app.post("/api/documents/",upload.array('picture'), function(req,res,next){ 
   req.files.forEach(function(file) {
@@ -76,27 +61,28 @@ app.get("/api/images/retriving/:imageid", function(req,res,next){
 // create
 
 app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
-  try {
-      const name = req.body.name;
-      
-      const items = [new FoodModel("pizza", "4")];
-      //const items = req.body.items;
-      const image_path = req.file ? req.file.path : null;  // Assuming you're saving the path of the uploaded picture
-      const uid = 0;
 
-      const fs = new FridgeSnapModel({
-          date_added: Date.now(), 
-          name: name, 
-          food: items,
-          uid: uid
-      });
+    console.log(req.body);
 
-      const ret = await addFridgeSnap(fs);  // Assuming addFridgeSnap is a function that saves the document to the database
+    
+    const items = [{ name: "pizza", quantity: "4" }];  // Correct instantiation
+    //const items = req.body.items;
+    const image_path = req.file ? req.file.path : null;  // Assuming you're saving the path of the uploaded picture
+    const uid = 0;
 
-      res.status(201).json({ message: "FridgeSnap uploaded successfully", data: ret });
-  } catch (error) {
-      res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
-  }
+    const fridgesnap = { 
+      date_added: Date.now(), 
+      image: req.file,  
+      food: items,
+      uid: uid
+    }
+
+    FridgeSnapDB.insert( fridgesnap, function(err, img) {
+      if (err) {
+        res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
+      }
+      res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
+    })
 });
 
 // read
@@ -104,6 +90,14 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
 app.get("/api/users/:uid/fridgesnaps", async (req, res) => {
     const snaps = getFridgeSnaps(req.params.uid);
     res.json(snaps);
+});
+
+app.get("/api/fridgesnap/:id/image", function(req, res) {
+  FridgeSnapDB.findOne({ _id: req.params.id }, function(err, fs){
+    if (err) return res.status(500).send("cannot retrieve image in database");
+    res.setHeader('Content-Type', fs.image.mimetype);
+    return res.sendFile(fs.image.path, {root:"./"});
+  })
 });
 
 app.get("/api/test", async (req, res) => {
@@ -117,10 +111,6 @@ app.get("/api/test", async (req, res) => {
 export const server = createServer(app).listen(PORT, function (err) {
     if (err) console.log(err);
     else console.log("HTTP server on http://localhost:%s", PORT);
-
-
-    connectDB().catch((err) => console.log(err));
-
 });
 
   
