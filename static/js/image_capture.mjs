@@ -10,8 +10,7 @@ addButton.addEventListener('click', function() {
 // Add listener to the file input for changes (when user selects or takes a photo)
 photoInput.addEventListener('change', function(event) {
   const file = event.target.files[0];
-  const items = 'example food items'; // Replace this with actual data or dynamic values
-  const uid = 'user123'; // Example user ID, replace with actual data
+
 
   if (file) {
     // Create a FormData object to send the file to the server
