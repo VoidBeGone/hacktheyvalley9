@@ -6,7 +6,7 @@ import Datastore from "nedb";
 import multer from "multer";
 const upload = multer({ dest: './uploads/' });
 import { run } from './foodClassifier.mjs';
-
+import {runrecipe } from "./recipeRecommender.mjs";
 
 const PORT = 4000;
 const app = express();
@@ -18,6 +18,7 @@ app.use(express.static("static"));
 
 
 const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
+const recipes = new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData: true });
 
 async function addingFromGemini(file) {
   try {
@@ -30,17 +31,51 @@ async function addingFromGemini(file) {
         try {
           // Assuming `foods.insert` is a function that inserts data into a database
           const food = await foods.insert(fooditem); // Use async/await for better error handling
+
         } catch (err) {
           console.error('Failed to add food item:', err);
           // Handle the error appropriately, e.g., return an error response in an API
         }
       });
+      addingRecipeFromGemini();
     } else {
       console.error('Output structure is incorrect:', output);
     }
   } catch (error) {
     console.error('Error in addingFromGemini:', error);
   }
+}
+
+async function addingRecipeFromGemini() {
+  // Fetch food items from the database
+  foods.find({}).exec((err, foodall) => {
+    if (err) {
+      console.error("Error fetching food data:", err);
+      return;
+    }
+
+    // Running the recipe generation
+    runrecipe(foodall)
+      .then(recipereturn => {
+        // Insert the generated recipe into the database
+        return new Promise((resolve, reject) => {
+          recipes.insert({ recipe: recipereturn }, (err, newDoc) => {
+            if (err) {
+              return reject(err); // Reject if there's an error
+            }
+            resolve(newDoc); // Resolve with the inserted document
+          });
+        });
+      })
+      .then(newDoc => {
+        // Log the result of the recipe insertion
+        console.log("Recipe inserted: ", newDoc);
+      })
+      .catch(err => {
+        // Handle any errors in the recipe generation or insertion process
+        console.error("Error in the recipe generation or insertion process:", err);
+      });
+  });
 }
 
 
