@@ -18,7 +18,8 @@ app.use(express.static("static"));
 
 
 const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
-const recipes =new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData : true});
+const recipes = new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData: true });
+
 async function addingFromGemini(file) {
   try {
     // Assuming run is an async function
@@ -30,11 +31,13 @@ async function addingFromGemini(file) {
         try {
           // Assuming `foods.insert` is a function that inserts data into a database
           const food = await foods.insert(fooditem); // Use async/await for better error handling
+
         } catch (err) {
           console.error('Failed to add food item:', err);
           // Handle the error appropriately, e.g., return an error response in an API
         }
       });
+      addingRecipeFromGemini();
     } else {
       console.error('Output structure is incorrect:', output);
     }
@@ -43,26 +46,39 @@ async function addingFromGemini(file) {
   }
 }
 
-async function addingRecipeFromGemini(){
-  foods.find({}).exec(function(err,foodall){
-    if (err) return;
-    const msg = runrecipe(foodall);
-    runrecipe(foodall, function(recipereturn){
-      recipes.insert({recipe:recipereturn},function(err,asd){
-        console.log(asd);
-        if (err){
-          console.log(":(");
-          return;
-        };
-        console.log("recipe "+ asd);
+async function addingRecipeFromGemini() {
+  // Fetch food items from the database
+  foods.find({}).exec((err, foodall) => {
+    if (err) {
+      console.error("Error fetching food data:", err);
+      return;
+    }
+
+    // Running the recipe generation
+    runrecipe(foodall)
+      .then(recipereturn => {
+        // Insert the generated recipe into the database
+        return new Promise((resolve, reject) => {
+          recipes.insert({ recipe: recipereturn }, (err, newDoc) => {
+            if (err) {
+              return reject(err); // Reject if there's an error
+            }
+            resolve(newDoc); // Resolve with the inserted document
+          });
+        });
+      })
+      .then(newDoc => {
+        // Log the result of the recipe insertion
+        console.log("Recipe inserted: ", newDoc);
+      })
+      .catch(err => {
+        // Handle any errors in the recipe generation or insertion process
+        console.error("Error in the recipe generation or insertion process:", err);
       });
-    });
   });
 }
 
 
-// Call the function
-addingRecipeFromGemini();
 
 
 app.use(function (req, res, next) {
