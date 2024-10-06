@@ -5,21 +5,6 @@
         console.log("Error:" + err.message);
     }
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBjGZyLVPKFaoKviEufK9E1Q-oKo3gClHo",
-    authDomain: "hackthevally-e2037.firebaseapp.com",
-    projectId: "hackthevally-e2037",
-    storageBucket: "hackthevally-e2037.appspot.com",
-    messagingSenderId: "154910357932",
-    appId: "1:154910357932:web:9bc9a8807cf6f1d2ff6209",
-    measurementId: "G-03TM5L500Q"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  
   // Elements
   const loginBtn = document.getElementById('login-btn');
   const loginModal = document.getElementById('login-modal');
@@ -34,13 +19,6 @@ const firebaseConfig = {
   const contentArea = document.getElementById('content-area');
   const addBtn = document.getElementById('add-btn');
   
-  document.addEventListener('DOMContentLoaded', function() {
-      if (addBtn) {
-          addBtn.addEventListener('click', () => {
-          window.location.href = 'imageCapture.html';
-          });
-      }
-      });
       
     loginModal.addEventListener("click", (event) => {
         // Check if the clicked target is the modal itself, not the content
@@ -144,7 +122,7 @@ const firebaseConfig = {
   });
   
   addBtn.addEventListener('click', () => {
-      loadPage('addPhoto');
+        
   });
   
 

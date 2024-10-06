@@ -42,7 +42,7 @@ async function addingFromGemini(file, uid) {
 async function addingRecipeFromGemini(food) {
   // Fetch food items from the database
   
-    console.log(food)
+    console.log("food: " + food)
     // Running the recipe generation
     runrecipe(food)
       .then(recipereturn => {
@@ -86,7 +86,7 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
   console.log('File received:', req.file); // Log the file information
   console.log('Request body:', req.body);  // Log the additional form data (items, uid)
 
-  const items = req.body.items;
+  const items = await addingFromGemini(req.file.path, req.body.uid);
   const uid = req.body.uid;
 
   const fridgesnap = { 
@@ -96,11 +96,12 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
     uid: uid
   }
 
-  FridgeSnapDB.insert(fridgesnap, function(err, img) {
+  FridgeSnapDB.insert(fridgesnap, async function(err, img) {
     if (err) {
       return res.status(500).json({ message: "Failed to upload FridgeSnap", error: err.message });
     }
     res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
+    await addingRecipeFromGemini(fridgesnap.food);
   });
 });
 
