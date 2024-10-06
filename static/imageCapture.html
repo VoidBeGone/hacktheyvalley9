@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camera Capture with Back Button</title>
-  <link rel="stylesheet" href="./style/main.css">
   <link rel="stylesheet" href="./style/image_capture.css">
   <script type="module" src="./js/image_capture.mjs"></script>
+
 </head>
 <body>
 
   <!-- Back button that redirects to the home page -->
-  
+  <a href="/index.html" class="back-button">Back</a>
 
   <!-- Main content area -->
   <div id="content-area">
@@ -22,30 +22,24 @@
 
     <!-- Canvas to capture the image -->
     <canvas id="canvas"></canvas>
-
-    <form id="add-image-form" action='/api/fridgesnap/upload' method="POST" enctype="multipart/form-data">
-      <input type="text" name="name" placeholder="FridgeSnap Name" required>
-      <input type="text" name="items" placeholder="Items" required>
-      <input type="file" name="picture" required>
-      <input type="submit">
-    </form>
-
   </div>
 
-
-
+  <!-- Title fixed at the bottom of the page -->
   <h1>Take a Photo</h1>
 
-  <!-- Form to submit the photos -->
-
+  
+  <form id="AddImageForm" action='/api/images/' method="POST" enctype="multipart/form-data">
+      <input type="file" name="photos" multiple>
+      <button type="submit">Upload Photos</button>
+  </form>
+ 
 
   <!-- Footer with buttons -->
   <div class="footer">
-    <button id="submitPhotoBtn">Submit</button>
-    <button class="add-photo-btn" id="capturePhotoBtn">+</button>
-    <button id="backBtn">Back</button>
-  </div>
 
+    <button class="add-photo-btn" id="capturePhotoBtn">+</button>
+    <button id="submitPhotoBtn">Submit</button>
+  </div>
 
 
 </body>

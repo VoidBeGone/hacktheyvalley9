@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Refridge</title>
   <link rel="stylesheet" href="./style/main.css">
-  <script type="module" src="./js/firebase.mjs"></script>
+  <script type="module" src="./js/index.mjs"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 </head>
 <body>
+
+    <div class="header">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png">
+        <button id="login-btn">Login</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
 
     <div id="content-area"></div>
   
@@ -32,20 +38,13 @@
         <p id="error-message" style="color:red;"></p>
       </div>
     </div>
-    <div class="header">
-        <button id="login-btn">Login</button>
-        <button id="logout-btn" style="display:none;">Logout</button>
-    </div>
+
     <!-- Footer with buttons -->
     <div class="footer">
       <button id="food-btn">Food</button>
-      <button id="recipe-btn">Recipes</button>
       <button class="add-photo-btn" id="add-btn">+</button>
+      <button id="recipe-btn">Recipes</button>
     </div>
 
-  <div id="content-area"></div>
-
-  
-  </script>
-</body>
+  </body>
 </html>

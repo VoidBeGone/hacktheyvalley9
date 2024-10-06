@@ -86,20 +86,22 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
 // read
 
 app.get("/api/users/:uid/fridgesnaps", async (req, res) => {
-    const snaps = getFridgeSnaps(req.params.uid);
-    res.json(snaps);
+    FridgeSnapDB.find({ }, function(err, snaps) {
+      console.log(snaps);
+      res.json(snaps);
+    })
 });
 
-app.get("/api/fridgesnap/:id/image", function(req, res) {
-  FridgeSnapDB.findOne({ _id: req.params.id }, function(err, fs){
+app.get("/api/fridgesnap/:id/image", function(req, res) { 
+  FridgeSnapDB.findOne({ _id: req.params.id }, function(err, snap){
+    console.log(snap);
     if (err) return res.status(500).send("cannot retrieve image in database");
-    res.setHeader('Content-Type', fs.image.mimetype);
-    return res.sendFile(fs.image.path, {root:"./"});
+    res.setHeader('Content-Type', snap.image.mimetype);
+    return res.sendFile(snap.image.path, {root:"./"});
   })
 });
 
 app.get("/api/test", async (req, res) => {
-    pingDB();
     res.json({ message: "hello" });
 })
 

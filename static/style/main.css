@@ -1,33 +1,65 @@
 body {
-    margin: 0;
+    margin: auto;
+    padding-top: 100px;
     font-family: Arial, sans-serif;
-    background-color: black;
+    background-color: #FAFAFA;
     color: #ADE8B4;
+    
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+
     height: 100vh; 
     justify-content: space-between;
-    max-width: 200px;
+    overflow-y: hidden;
 }
 
 #content-area {
-  padding: 20px;
-  padding-bottom: 100px; /* Ensure content doesn't overlap with footer */
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center;
+    align-items: center;
+
+    overflow-y: scroll;
+    outline: 1px solid red;
+    width: 100%;
+    flex-basis: 80%;
 }
 
+* {
+    opacity: 0.8;
+}
+
+
 .image-item {
-  margin-bottom: 20px;
+    display: flex;
+    width: 100%; /* Use 100% of the parent container's width */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .image-item img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
+    width: 50%; /* Image takes up 50% width */
+    height: auto;
+    padding: 5px;
+    aspect-ratio: 1 / 1; /* Keeps the image square */
+    object-fit: cover;
+}
+
+.image-item img:hover {
+    transition: width 0.5s ease;
 }
 
 .image-item p {
-  margin: 10px 0;
+    width: 50%; /* Text takes up 50% width */
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 5px;
 }
+
+
 
 /* Login Modal */
 #login-modal {
@@ -108,25 +140,31 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #333;
-  display: flex;
-  justify-content: space-around;
-  padding: 15px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #4CAF50;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: stretch;
+  align-items: center;
+  box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
 }
+
+button {
+    border: none;
+}
+
 .header {
+    height: 70px;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #000000;
+  background-color: #4CAF50;
   display: flex;
-  justify-content: right;
+  justify-content: space-around;
   padding: 15px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 .header button {
-  background-color: #ADE8B4; /* Pastel Green */
-  border: 2px solid black;
+  background-color: #FF9800; 
   color: black;
   padding: 10px 20px;
   border-radius: 40px; /* Rounded */
@@ -134,14 +172,13 @@ body {
   font-size: 16px;
 }
 .footer button {
-  background-color: #ADE8B4; /* Pastel Green */
-  border: 2px solid black;
+  background-color: #ADE8B4; 
   color: black;
-  padding: 10px 20px;
-  border-radius: 15px; /* Rounded */
   cursor: pointer;
+  align-self: stretch;
   font-size: 16px;
-  display: none;
+  outline: 1px solid grey;
+  height: 70px;
 }
 
 .footer button:hover {
@@ -154,12 +191,9 @@ body {
 /* Circular Add Photo Button */
 .footer .add-photo-btn {
   background-color: #ADE8B4;
-  border: 2px solid black;
   color: black;
   padding: 15px;
-  border-radius: 50%; /* Circular */
-  width: 60px;
-  height: 60px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,4 +202,8 @@ body {
 
 .footer .add-photo-btn:hover {
   background-color: #90c257;
+}
+
+#content-area {
+    justify-self: center;
 }
