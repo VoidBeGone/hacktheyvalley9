@@ -1,48 +1,171 @@
 body {
-    margin: auto;
-    background-color: #020210;
-    max-width: 700px;
-    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: #ADE8B4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+    justify-content: space-between;
+    max-width: 200px;
 }
 
-header {
-    display: flex;
+#content-area {
+  padding: 20px;
+  padding-bottom: 100px; /* Ensure content doesn't overlap with footer */
+}
+
+.image-item {
+  margin-bottom: 20px;
+}
+
+.image-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.image-item p {
+  margin: 10px 0;
+}
+
+/* Login Modal */
+#login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    background-color: rgb(150, 245, 197);
-    position: sticky;
-    top: 0;
-    height: 100px;
-}
-header span{
-    font-size: 70px;
-    font-weight: bold;
-    text-align: center;
-    font-family: Impact;
 }
 
-footer {
-    display: flex;
-    position: sticky;
-    bottom: 0;
-
-    height: 100px;
+#login-modal .modal-content {
+    background-color: #ADE8B4;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
     width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-footer .btn {
-    background-color: rgb(150, 245, 197);
-    flex-grow: 1;
-    flex-basis: 25%;
-    height: 100px;
+#form-title {
+    text-align: center;
     font-size: 24px;
-
-    border: none;
-    outline: none;    
+    color: #05668D; /* Darker shade for contrast */
 }
 
-footer .btn:hover{
-    background-color: rgb(150, 245, 197);
-    flex-grow: 1.2;
-    transition: flex-grow 0.1s;
+#login-form input,
+#signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #05668D; /* Consistent border color */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#login-submit-btn,
+#signup-submit-btn,
+#toggle-signup-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #028090; /* Button color for consistency */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#login-submit-btn:hover,
+#signup-submit-btn:hover,
+#toggle-signup-btn:hover {
+    background-color: #b1e3f7; /* Slightly darker on hover */
+}
+
+#error-message {
+    color: #D62828; /* Red for error messages */
+    text-align: center;
+    font-size: 14px;
+}
+
+#toggle-signup-btn {
+    background-color: transparent; /* No background for toggle button */
+    color: #028090; /* Match button color */
+    margin-top: 10px;
+}
+
+#toggle-signup-btn:hover {
+    color: #05668D; /* Darker hover effect */
+}
+
+
+/* Fixed Footer for buttons */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: right;
+  padding: 15px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+.header button {
+  background-color: #ADE8B4; /* Pastel Green */
+  border: 2px solid black;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 40px; /* Rounded */
+  cursor: pointer;
+  font-size: 16px;
+}
+.footer button {
+  background-color: #ADE8B4; /* Pastel Green */
+  border: 2px solid black;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 15px; /* Rounded */
+  cursor: pointer;
+  font-size: 16px;
+  display: none;
+}
+
+.footer button:hover {
+  background-color: #90c257; /* Darker Pastel Green on hover */
+}
+.header button:hover {
+  background-color: #90c257; /* Darker Pastel Green on hover */
+}
+
+/* Circular Add Photo Button */
+.footer .add-photo-btn {
+  background-color: #ADE8B4;
+  border: 2px solid black;
+  color: black;
+  padding: 15px;
+  border-radius: 50%; /* Circular */
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.footer .add-photo-btn:hover {
+  background-color: #90c257;
 }
