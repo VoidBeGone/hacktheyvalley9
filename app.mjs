@@ -79,7 +79,7 @@ async function addingRecipeFromGemini() {
 }
 
 
-
+//addingFromGemini("foodtest.jpg");
 
 app.use(function (req, res, next) {
   console.log("HTTP request", req.method, req.url, req.body);

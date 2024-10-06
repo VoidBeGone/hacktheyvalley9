@@ -1,9 +1,158 @@
 {"name":"sesame seeds","quantity":1,"_id":"00B2UcgmJXxS6ZuH","createdAt":{"$$date":1728195051393},"updatedAt":{"$$date":1728195051393}}
+{"name":"tomato","quantity":1,"_id":"00nuXo7kTqa6Vv9S","createdAt":{"$$date":1728195552927},"updatedAt":{"$$date":1728195552927}}
+{"name":"spinach","quantity":1,"_id":"0F6FYfESaH7D7Dyv","createdAt":{"$$date":1728195376753},"updatedAt":{"$$date":1728195376753}}
+{"name":"broccoli","quantity":1,"_id":"0R4VU8gaimuA6ktY","createdAt":{"$$date":1728195568315},"updatedAt":{"$$date":1728195568315}}
+{"name":"meat","quantity":1,"_id":"0aOmatug3ExaAcgK","createdAt":{"$$date":1728195568318},"updatedAt":{"$$date":1728195568318}}
+{"name":"corn","quantity":1,"_id":"0kwarEzsKMdJGEoL","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"meat","quantity":1,"_id":"0m1JexSWpZa0cGmB","createdAt":{"$$date":1728195366184},"updatedAt":{"$$date":1728195366184}}
+{"name":"blueberry","quantity":5,"_id":"1JlAB2M3gHmg4ezF","createdAt":{"$$date":1728195371574},"updatedAt":{"$$date":1728195371574}}
+{"name":"strawberry","quantity":5,"_id":"24AwupKQBhvgK7Ku","createdAt":{"$$date":1728195568317},"updatedAt":{"$$date":1728195568317}}
+{"name":"pasta","quantity":1,"_id":"2ANDR9YA9wNdTjm2","createdAt":{"$$date":1728195376755},"updatedAt":{"$$date":1728195376755}}
+{"name":"peas","quantity":1,"_id":"2cd6XPvwmnIFFyIE","createdAt":{"$$date":1728195552927},"updatedAt":{"$$date":1728195552927}}
+{"name":"rice","quantity":1,"_id":"3m61SbMjLTpDpqWE","createdAt":{"$$date":1728195568320},"updatedAt":{"$$date":1728195568320}}
+{"name":"carrot","quantity":4,"_id":"3zVYBK0VWa3gR1zA","createdAt":{"$$date":1728195376751},"updatedAt":{"$$date":1728195376751}}
+{"name":"red cabbage","quantity":1,"_id":"44SA4Li3QNEqdjLV","createdAt":{"$$date":1728195366182},"updatedAt":{"$$date":1728195366182}}
+{"name":"strawberry","quantity":5,"_id":"4CmCAkNKbc26oo52","createdAt":{"$$date":1728195371573},"updatedAt":{"$$date":1728195371573}}
+{"name":"walnut","quantity":1,"_id":"4V8cLWgvJ5jRqdl0","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
 {"name":"salmon","quantity":1,"_id":"65mMuV6MIuvGq7LS","createdAt":{"$$date":1728195051391},"updatedAt":{"$$date":1728195051391}}
+{"name":"carrot","quantity":5,"_id":"66bJ47Kei4bUZSdZ","createdAt":{"$$date":1728195568316},"updatedAt":{"$$date":1728195568316}}
+{"name":"meat","quantity":1,"_id":"6LXTc1oqhSjonA9p","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
+{"name":"peas","quantity":1,"_id":"6bX1HgcqWjE17vDX","createdAt":{"$$date":1728195376754},"updatedAt":{"$$date":1728195376754}}
+{"name":"corn","quantity":1,"_id":"6c2JqajBc0I6ntlL","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"strawberry","quantity":6,"_id":"7XFsZIQR47z5Iemp","createdAt":{"$$date":1728195552925},"updatedAt":{"$$date":1728195552925}}
 {"name":"red pepper","quantity":1,"_id":"7cE3C7ch5rWN4lMp","createdAt":{"$$date":1728195051393},"updatedAt":{"$$date":1728195051393}}
+{"name":"egg","quantity":1,"_id":"7pmnvUcbMFHuEIP3","createdAt":{"$$date":1728195376755},"updatedAt":{"$$date":1728195376755}}
+{"name":"egg","quantity":1,"_id":"7ugQhrme2j9Z5wIt","createdAt":{"$$date":1728195552930},"updatedAt":{"$$date":1728195552930}}
+{"name":"salmon","quantity":1,"_id":"7ycrz0ZgTjXtSqDB","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
+{"name":"peas","quantity":1,"_id":"8fRyctU16l6xU7G5","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"corn","quantity":1,"_id":"8hw6edsBoTCPnqJD","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"lentil","quantity":1,"_id":"8xpYVnbthfSjV83T","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
+{"name":"walnut","quantity":1,"_id":"9cFOrT7NW8zG37Gv","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
 {"name":"carrot","quantity":1,"_id":"A1roP9SioaxFWCli","createdAt":{"$$date":1728195051392},"updatedAt":{"$$date":1728195051392}}
+{"name":"spinach","quantity":1,"_id":"A3UwQXuY4XsxAvsu","createdAt":{"$$date":1728195366182},"updatedAt":{"$$date":1728195366182}}
+{"name":"apple","quantity":1,"_id":"AmBRC3QtOMFDuyHN","createdAt":{"$$date":1728195552926},"updatedAt":{"$$date":1728195552926}}
+{"name":"quinoa","quantity":1,"_id":"Bh0iBLN5UUTc1CWm","createdAt":{"$$date":1728195568320},"updatedAt":{"$$date":1728195568320}}
+{"name":"red cabbage","quantity":1,"_id":"Bq3obzwshxCcNIuF","createdAt":{"$$date":1728195543506},"updatedAt":{"$$date":1728195543506}}
+{"name":"tomato","quantity":1,"_id":"CGB7uDzv6ZhvavOX","createdAt":{"$$date":1728195568318},"updatedAt":{"$$date":1728195568318}}
+{"name":"broccoli","quantity":1,"_id":"CqQmPpkZAO7m1j3P","createdAt":{"$$date":1728195543503},"updatedAt":{"$$date":1728195543503}}
+{"name":"tomato","quantity":1,"_id":"DgWxZZtiFCHduvyu","createdAt":{"$$date":1728195543506},"updatedAt":{"$$date":1728195543506}}
+{"name":"lentil","quantity":1,"_id":"E1TvOHbVYJQLBib4","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"bread","quantity":1,"_id":"Ej4qtPvOQl2dyYUn","createdAt":{"$$date":1728195552929},"updatedAt":{"$$date":1728195552929}}
+{"name":"broccoli","quantity":1,"_id":"EwJ1WYvIyL2JXsMp","createdAt":{"$$date":1728195366178},"updatedAt":{"$$date":1728195366178}}
+{"name":"bread","quantity":1,"_id":"F7XpPAca4e1TIVrk","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"broccoli","quantity":1,"_id":"FtZZiXswMPDnHZ2s","createdAt":{"$$date":1728195552923},"updatedAt":{"$$date":1728195552923}}
+{"name":"almond","quantity":2,"_id":"GGzJ4p4M0otXmtx2","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"tofu","quantity":1,"_id":"GHuioUN7G1mRVp4b","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
 {"name":"edamame","quantity":1,"_id":"GZuiRAik9cTGOtbV","createdAt":{"$$date":1728195051393},"updatedAt":{"$$date":1728195051393}}
+{"name":"tofu","quantity":1,"_id":"GfudFqmhkDjMNAWG","createdAt":{"$$date":1728195552929},"updatedAt":{"$$date":1728195552929}}
+{"name":"cucumber","quantity":3,"_id":"H6pyHFQMV3S9NtVx","createdAt":{"$$date":1728195543505},"updatedAt":{"$$date":1728195543505}}
+{"name":"rice","quantity":1,"_id":"HFJrpoaqbCjvuK46","createdAt":{"$$date":1728195376754},"updatedAt":{"$$date":1728195376754}}
+{"name":"peas","quantity":1,"_id":"HHzmQEQdMPWbu0Dr","createdAt":{"$$date":1728195568318},"updatedAt":{"$$date":1728195568318}}
+{"name":"nuts","quantity":1,"_id":"Hb9ykamc277ijEl8","createdAt":{"$$date":1728195366184},"updatedAt":{"$$date":1728195366184}}
+{"name":"rice","quantity":1,"_id":"I30oePPHftH6iFcy","createdAt":{"$$date":1728195366186},"updatedAt":{"$$date":1728195366186}}
+{"name":"kidney beans","quantity":1,"_id":"I4WIJzneUb5igjVa","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"corn","quantity":1,"_id":"I8dj6YHSNLlAkjNo","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"lentils","quantity":1,"_id":"IGQuWKKagajsuqwD","createdAt":{"$$date":1728195376755},"updatedAt":{"$$date":1728195376755}}
+{"name":"tomato","quantity":1,"_id":"JxwwBLvPwSGFoyUv","createdAt":{"$$date":1728195371574},"updatedAt":{"$$date":1728195371574}}
+{"name":"bread","quantity":1,"_id":"MfiiNvUJLoKxBY4N","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"pasta","quantity":1,"_id":"MqA6b7XSjxXGswPt","createdAt":{"$$date":1728195552929},"updatedAt":{"$$date":1728195552929}}
 {"name":"avocado","quantity":1,"_id":"MtCrcrvcByoiWJDY","createdAt":{"$$date":1728195051392},"updatedAt":{"$$date":1728195051392}}
+{"name":"apple","quantity":1,"_id":"OLRYuKUOMrbQ9tM7","createdAt":{"$$date":1728195568317},"updatedAt":{"$$date":1728195568317}}
+{"name":"sweet potato","quantity":3,"_id":"OPPJURAE9Z51I8hh","createdAt":{"$$date":1728195568318},"updatedAt":{"$$date":1728195568318}}
+{"name":"blueberry","quantity":6,"_id":"ORauNcNWSaC3O8wt","createdAt":{"$$date":1728195568317},"updatedAt":{"$$date":1728195568317}}
+{"name":"potato","quantity":3,"_id":"Of7ounWX34ynmsUA","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"meat","quantity":1,"_id":"OyIGoTYtM5kIfTin","createdAt":{"$$date":1728195371575},"updatedAt":{"$$date":1728195371575}}
+{"name":"carrot","quantity":6,"_id":"P7zEihHxDUzgcopD","createdAt":{"$$date":1728195552925},"updatedAt":{"$$date":1728195552925}}
+{"name":"rice","quantity":1,"_id":"P88GkfKA8Aj7zRMO","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"blueberry","quantity":6,"_id":"P9Ur3A0vSoufhCHn","createdAt":{"$$date":1728195376753},"updatedAt":{"$$date":1728195376753}}
+{"name":"squash","quantity":4,"_id":"Q0Pd1VCLzcJ6YHjw","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"salmon","quantity":1,"_id":"QQrqjb8XeU2zngET","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"red cabbage","quantity":1,"_id":"QfHXyA18RMA5SWvF","createdAt":{"$$date":1728195371574},"updatedAt":{"$$date":1728195371574}}
+{"name":"tofu","quantity":1,"_id":"RTKf5Xh0P2lEeABg","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"lentil","quantity":1,"_id":"RaUbq2NESSREC1f5","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"apple","quantity":1,"_id":"SSKpTjRnATBgnXd6","createdAt":{"$$date":1728195366182},"updatedAt":{"$$date":1728195366182}}
+{"name":"almond","quantity":1,"_id":"TO7JheUywezwKJtQ","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"beef","quantity":1,"_id":"TyWkApPKfWMTTFKl","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"quinoa","quantity":1,"_id":"Ud5InNdcpO9Vka5Y","createdAt":{"$$date":1728195543509},"updatedAt":{"$$date":1728195543509}}
+{"name":"tofu","quantity":1,"_id":"UmzwJyLL73bNHPkX","createdAt":{"$$date":1728195376755},"updatedAt":{"$$date":1728195376755}}
+{"name":"egg","quantity":1,"_id":"Uql2JFlNSsrmqSff","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"egg","quantity":1,"_id":"UtzmrOJpsuIKxMNm","createdAt":{"$$date":1728195366187},"updatedAt":{"$$date":1728195366187}}
+{"name":"carrot","quantity":4,"_id":"V1lWc4PXvnqynRsi","createdAt":{"$$date":1728195543504},"updatedAt":{"$$date":1728195543504}}
+{"name":"almond","quantity":1,"_id":"V8zrfYkW1BUcrj1B","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"broccoli","quantity":2,"_id":"VIxXiTrBGrVWgsSh","createdAt":{"$$date":1728195371572},"updatedAt":{"$$date":1728195371572}}
+{"name":"red cabbage","quantity":1,"_id":"VPB59X1BVQ2pGTqo","createdAt":{"$$date":1728195568317},"updatedAt":{"$$date":1728195568317}}
+{"name":"apple","quantity":1,"_id":"VSRcwAkNIR696vYy","createdAt":{"$$date":1728195371571},"updatedAt":{"$$date":1728195371571}}
+{"name":"potato","quantity":3,"_id":"VTxtaUtTQf88Lybe","createdAt":{"$$date":1728195366183},"updatedAt":{"$$date":1728195366183}}
+{"name":"tofu","quantity":1,"_id":"WVvS6CjfjDdswOV4","createdAt":{"$$date":1728195366185},"updatedAt":{"$$date":1728195366185}}
+{"name":"strawberry","quantity":6,"_id":"X8LUk4fRGhUNisQt","createdAt":{"$$date":1728195376752},"updatedAt":{"$$date":1728195376752}}
+{"name":"squash","quantity":5,"_id":"XFiLNj8WKc3LeiGD","createdAt":{"$$date":1728195371575},"updatedAt":{"$$date":1728195371575}}
+{"name":"salmon","quantity":1,"_id":"XICq0JNDhRJuUfyS","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"strawberry","quantity":5,"_id":"XITpqPOzmet5fwkm","createdAt":{"$$date":1728195366180},"updatedAt":{"$$date":1728195366180}}
+{"name":"bread","quantity":1,"_id":"Y9e5lwKqlRM1F43n","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"rice","quantity":1,"_id":"ZOuHcIumsBrcXN19","createdAt":{"$$date":1728195543509},"updatedAt":{"$$date":1728195543509}}
+{"name":"apple","quantity":1,"_id":"ZjZxB50zkLBI12Bq","createdAt":{"$$date":1728195543505},"updatedAt":{"$$date":1728195543505}}
+{"name":"seed","quantity":1,"_id":"ZoFGsdTtQWRMh65v","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"tofu","quantity":1,"_id":"bF00q8sXBGqUAdSV","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"beans","quantity":1,"_id":"bKWJhkOC3FuapjBl","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"bread","quantity":1,"_id":"bhkKuK3rQw0OJM4D","createdAt":{"$$date":1728195366185},"updatedAt":{"$$date":1728195366185}}
+{"name":"salmon","quantity":1,"_id":"bvhixEgzWD5bmB0d","createdAt":{"$$date":1728195366184},"updatedAt":{"$$date":1728195366184}}
+{"name":"potato","quantity":4,"_id":"cfk7MstrT25JF98B","createdAt":{"$$date":1728195552927},"updatedAt":{"$$date":1728195552927}}
+{"name":"tomato","quantity":1,"_id":"deoJhJGimoVUlkSh","createdAt":{"$$date":1728195376753},"updatedAt":{"$$date":1728195376753}}
+{"name":"quinoa","quantity":1,"_id":"dqb607DLtkkgo3a8","createdAt":{"$$date":1728195552930},"updatedAt":{"$$date":1728195552930}}
+{"name":"sweet potato","quantity":5,"_id":"drv8RExwrCwLyyib","createdAt":{"$$date":1728195376754},"updatedAt":{"$$date":1728195376754}}
+{"name":"spinach","quantity":1,"_id":"e4eN3ioYWcRKF6a8","createdAt":{"$$date":1728195543506},"updatedAt":{"$$date":1728195543506}}
+{"name":"tomato","quantity":1,"_id":"eaMdnwIR8zNHc6qt","createdAt":{"$$date":1728195366183},"updatedAt":{"$$date":1728195366183}}
+{"name":"spinach","quantity":1,"_id":"fXuSJDTptLvcZNnO","createdAt":{"$$date":1728195371574},"updatedAt":{"$$date":1728195371574}}
+{"name":"blueberry","quantity":6,"_id":"fi8LZcS6IuN1h2gl","createdAt":{"$$date":1728195366181},"updatedAt":{"$$date":1728195366181}}
+{"name":"apple","quantity":1,"_id":"gCLQQSTakZvyF8C1","createdAt":{"$$date":1728195376750},"updatedAt":{"$$date":1728195376750}}
+{"name":"carrot","quantity":5,"_id":"gWARN1YDwkWYWSI9","createdAt":{"$$date":1728195366180},"updatedAt":{"$$date":1728195366180}}
+{"name":"beans","quantity":1,"_id":"gevzeJkDIzNhXBul","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"walnut","quantity":1,"_id":"gl5jW2Oirj9FYOK2","createdAt":{"$$date":1728195371576},"updatedAt":{"$$date":1728195371576}}
+{"name":"egg","quantity":1,"_id":"gy03tXk1x2iqsmFr","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"potato","quantity":3,"_id":"h7qOR68evp05zA8g","createdAt":{"$$date":1728195371575},"updatedAt":{"$$date":1728195371575}}
+{"name":"wild rice","quantity":1,"_id":"hZWeyL8CgsuEeMtj","createdAt":{"$$date":1728195543509},"updatedAt":{"$$date":1728195543509}}
 {"name":"rice","quantity":1,"_id":"iNQFYEYCDC4iyZ5v","createdAt":{"$$date":1728195051389},"updatedAt":{"$$date":1728195051389}}
+{"name":"beans","quantity":1,"_id":"iPEanroncgQ7ru92","createdAt":{"$$date":1728195366185},"updatedAt":{"$$date":1728195366185}}
+{"name":"peas","quantity":1,"_id":"jEIHWPsXtwxl0Cjy","createdAt":{"$$date":1728195371575},"updatedAt":{"$$date":1728195371575}}
+{"name":"pasta","quantity":1,"_id":"jGgS7mSRsSdcjWXH","createdAt":{"$$date":1728195568320},"updatedAt":{"$$date":1728195568320}}
+{"name":"corn","quantity":1,"_id":"jQVdS3yFvi5J8AkV","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
+{"name":"almond","quantity":1,"_id":"jSAJLmvJKfHKATh0","createdAt":{"$$date":1728195552928},"updatedAt":{"$$date":1728195552928}}
+{"name":"blueberry","quantity":6,"_id":"jkSqBmFouVS9mohK","createdAt":{"$$date":1728195552926},"updatedAt":{"$$date":1728195552926}}
+{"name":"quinoa","quantity":1,"_id":"jmBqH9zLAC3VeoCN","createdAt":{"$$date":1728195376754},"updatedAt":{"$$date":1728195376754}}
 {"name":"cucumber","quantity":1,"_id":"k7VElXkV4sFIrhqo","createdAt":{"$$date":1728195051392},"updatedAt":{"$$date":1728195051392}}
+{"name":"quinoa","quantity":1,"_id":"kBmtxNrSf62E24Te","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"strawberry","quantity":6,"_id":"kYCSkjLcUXdmoM7h","createdAt":{"$$date":1728195543505},"updatedAt":{"$$date":1728195543505}}
+{"name":"yogurt","quantity":1,"_id":"kmziN1RlfPOWvMZr","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"red cabbage","quantity":1,"_id":"lJlAqc6CNtt6smgZ","createdAt":{"$$date":1728195552926},"updatedAt":{"$$date":1728195552926}}
+{"name":"corn","quantity":1,"_id":"lgRhfCfmuPljBNzu","createdAt":{"$$date":1728195366185},"updatedAt":{"$$date":1728195366185}}
+{"name":"pasta","quantity":1,"_id":"ljVjHCJU99xywetf","createdAt":{"$$date":1728195371577},"updatedAt":{"$$date":1728195371577}}
+{"name":"squash","quantity":4,"_id":"mfxznsjvp3iYZY2y","createdAt":{"$$date":1728195366183},"updatedAt":{"$$date":1728195366183}}
+{"name":"red bean","quantity":1,"_id":"msWohGvqiaqncjUM","createdAt":{"$$date":1728195543508},"updatedAt":{"$$date":1728195543508}}
+{"name":"spinach","quantity":1,"_id":"nnPsy49Zf91D1Jtl","createdAt":{"$$date":1728195552926},"updatedAt":{"$$date":1728195552926}}
+{"name":"seeds","quantity":1,"_id":"ohh7wwHWa4XJCPxc","createdAt":{"$$date":1728195552930},"updatedAt":{"$$date":1728195552930}}
+{"name":"walnut","quantity":1,"_id":"ongm5N6lKpR83M4J","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"chicken","quantity":1,"_id":"pseMnZSdlKkDoCie","createdAt":{"$$date":1728195376756},"updatedAt":{"$$date":1728195376756}}
+{"name":"lentils","quantity":1,"_id":"q7XfYfiQfkwPfq1M","createdAt":{"$$date":1728195366184},"updatedAt":{"$$date":1728195366184}}
+{"name":"rice","quantity":1,"_id":"qbiyYGZrrasyTTgG","createdAt":{"$$date":1728195552929},"updatedAt":{"$$date":1728195552929}}
+{"name":"spinach","quantity":1,"_id":"r2w03ynZgWnAfbNF","createdAt":{"$$date":1728195568317},"updatedAt":{"$$date":1728195568317}}
+{"name":"nuts","quantity":1,"_id":"r4h7RWrzmTi4XBi4","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"blueberry","quantity":6,"_id":"rKOq2NuDFfgvlCTh","createdAt":{"$$date":1728195543505},"updatedAt":{"$$date":1728195543505}}
+{"name":"salmon","quantity":1,"_id":"rekW4MStA0v1CwSo","createdAt":{"$$date":1728195376755},"updatedAt":{"$$date":1728195376755}}
+{"name":"quinoa","quantity":1,"_id":"sGMmrYlbrRHB7dPK","createdAt":{"$$date":1728195366187},"updatedAt":{"$$date":1728195366187}}
+{"name":"sour cream","quantity":1,"_id":"tNoVMeS3Rsc57Dwk","createdAt":{"$$date":1728195552930},"updatedAt":{"$$date":1728195552930}}
+{"name":"peas","quantity":1,"_id":"tSlxvunynTTdFE6G","createdAt":{"$$date":1728195366183},"updatedAt":{"$$date":1728195366183}}
 {"name":"yellow pepper","quantity":1,"_id":"tnehkXCSF1sp5iaa","createdAt":{"$$date":1728195051393},"updatedAt":{"$$date":1728195051393}}
+{"name":"red cabbage","quantity":1,"_id":"u94foFgSebfBJ8JU","createdAt":{"$$date":1728195376753},"updatedAt":{"$$date":1728195376753}}
+{"name":"lentil","quantity":1,"_id":"u9urMYXPbpKkuJkI","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"pasta","quantity":1,"_id":"v6cTVdEAqdplHo5U","createdAt":{"$$date":1728195543509},"updatedAt":{"$$date":1728195543509}}
+{"name":"beans","quantity":1,"_id":"vcJAzKfN4pbwgVmI","createdAt":{"$$date":1728195552929},"updatedAt":{"$$date":1728195552929}}
+{"name":"salmon","quantity":1,"_id":"wIjiXMqcAYQBfTQ6","createdAt":{"$$date":1728195568319},"updatedAt":{"$$date":1728195568319}}
+{"name":"potato","quantity":3,"_id":"wQ5FkXThY4qWBd3w","createdAt":{"$$date":1728195568318},"updatedAt":{"$$date":1728195568318}}
+{"name":"broccoli","quantity":1,"_id":"y1MMn4Zx444O9yRA","createdAt":{"$$date":1728195376752},"updatedAt":{"$$date":1728195376752}}
+{"name":"bread","quantity":1,"_id":"y50LG6upTbyWwrET","createdAt":{"$$date":1728195376754},"updatedAt":{"$$date":1728195376754}}
+{"name":"chicken","quantity":1,"_id":"yT5cBsB4iKqfSwaG","createdAt":{"$$date":1728195371575},"updatedAt":{"$$date":1728195371575}}
+{"name":"meat","quantity":3,"_id":"z2Vcb58Ziw6b5bu4","createdAt":{"$$date":1728195543507},"updatedAt":{"$$date":1728195543507}}
+{"name":"egg","quantity":1,"_id":"zTH0I9FmVqn6nmEL","createdAt":{"$$date":1728195568320},"updatedAt":{"$$date":1728195568320}}
+{"name":"pasta","quantity":1,"_id":"zeJzVisCBiS2H2VV","createdAt":{"$$date":1728195366185},"updatedAt":{"$$date":1728195366185}}
+{"name":"sweet potato","quantity":4,"_id":"zfnJeHaAKKnYW9Ft","createdAt":{"$$date":1728195552927},"updatedAt":{"$$date":1728195552927}}
+{"name":"carrot","quantity":5,"_id":"zgOPHrQNVrPY9oLu","createdAt":{"$$date":1728195371573},"updatedAt":{"$$date":1728195371573}}
