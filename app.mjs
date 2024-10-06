@@ -6,7 +6,7 @@ import Datastore from "nedb";
 import multer from "multer";
 const upload = multer({ dest: './uploads/' });
 import { run } from './foodClassifier.mjs';
-
+import {runrecipe } from "./recipeRecommender.mjs";
 
 const PORT = 4000;
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.static("static"));
 
 
 const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
-
+const recipes =new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData : true});
 async function addingFromGemini(file) {
   try {
     // Assuming run is an async function
@@ -43,7 +43,26 @@ async function addingFromGemini(file) {
   }
 }
 
+async function addingRecipeFromGemini(){
+  foods.find({}).exec(function(err,foodall){
+    if (err) return;
+    const msg = runrecipe(foodall);
+    runrecipe(foodall, function(recipereturn){
+      recipes.insert({recipe:recipereturn},function(err,asd){
+        console.log(asd);
+        if (err){
+          console.log(":(");
+          return;
+        };
+        console.log("recipe "+ asd);
+      });
+    });
+  });
+}
 
+
+// Call the function
+addingRecipeFromGemini();
 
 
 app.use(function (req, res, next) {
