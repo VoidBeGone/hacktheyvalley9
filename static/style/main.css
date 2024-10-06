@@ -198,7 +198,7 @@ button {
   justify-content: space-around;
   padding: 15px 0;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-  border-radius:15px;
+  border-radius:0 0 15px 15px;
   opacity:1.2;
 }
 .header button {
