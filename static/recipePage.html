@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refridge</title>
+  <link rel="stylesheet" href="./style/recipies.css">
+  <script type="module" src="./js/index.mjs"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+
+
+<body>
+
+
+
+    <div class="header">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png">
+        <button id="login-btn">Login</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
+
+    <div id="content-area" >
+
+      <div class="wrapper">
+        <!-- Change Recipe 1-8 with vars -->
+        <a href="page1.html" class="btn">Recipe 1</a>
+        <a href="page2.html" class="btn">Recipe 2</a>
+        <a href="page3.html" class="btn">Recipe 3</a>
+        <a href="page4.html" class="btn">Recipe 4</a>
+        <a href="page1.html" class="btn">Recipe 5</a>
+        <a href="page2.html" class="btn">Recipe 6</a>
+        <a href="page3.html" class="btn">Recipe 7</a>
+        <a href="page4.html" class="btn">Recipe 8</a>
+      </div>
+       
+    </div>
+  
+    
+
+    <!-- Footer with buttons -->
+    <div class="footer">
+      <button id="food-btn">Food</button>
+      <button class="add-photo-btn" id="add-btn">+</button>
+      <button id="recipe-btn">Recipes</button>
+    </div>
+
+  </body>
+</html>
+
