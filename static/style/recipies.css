@@ -198,40 +198,93 @@ button {
 
 
 /* Circular Add Photo Button */
-.footer .add-photo-btn {
-  background-color: #ADE8B4;
-  color: black;
-  padding: 15px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-}
-
-.footer .add-photo-btn:hover {
-  background-color: #90c257;
-}
-
-#content-area {
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%; /* Ensure body takes full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  /* Main Body Content */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #FAFAFA;
+    color: #ADE8B4;
+  }
+  
+  /* Header */
+  .header {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Content Area */
+  #content-area {
+    margin-top: 70px; /* Push content below the header */
+    width: 100%;
+    height: calc(100vh - 140px); /* Adjust height for header and footer */
+    overflow-y: auto; /* Allow scrolling within content area */
+    outline: 1px solid red;
     display: flex;
     flex-direction: column; /* Stack items vertically */
     justify-content: flex-start;
     align-items: center;
+  }
+  
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    height: calc(100vh - 70px - 70px); /* Adjust height to fit between header and footer */
-    overflow-y: scroll; /* Enable scrolling inside content area */
-    outline: 1px solid red;
-}
-
-
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
+    height: 70px; /* Ensure consistent footer height */
+    background-color: #4CAF50;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: stretch;
+    align-items: center;
+    box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Footer Buttons */
+  .footer button {
+    background-color: #ADE8B4;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    outline: 1px solid grey;
+    height: 100%; /* Fill the height of the footer */
+  }
+  
+  /* Additional Styling for Buttons */
+  .footer button:hover {
+    background-color: #90c257; /* Darker Pastel Green on hover */
+  }
+  
+  .footer .add-photo-btn {
+    background-color: #ADE8B4;
+    color: black;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+  
+  .footer .add-photo-btn:hover {
+    background-color: #90c257;
+  }
 .wrapper {
     width: 100vw; /* Full viewport width */
     padding: 0;
