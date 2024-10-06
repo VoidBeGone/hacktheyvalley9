@@ -81,35 +81,27 @@ app.get("/api/fridgesnap/:id/images/:count", function(req,res,next){
 });
 
 // create
+
 app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
   console.log('File received:', req.file); // Log the file information
   console.log('Request body:', req.body);  // Log the additional form data (items, uid)
 
+  const items = req.body.items;
   const uid = req.body.uid;
 
-    const items = await(addingFromGemini(req.file.path, uid));
+  const fridgesnap = { 
+    date_added: Date.now(), 
+    image: req.file,  // The uploaded file information
+    food: items,
+    uid: uid
+  }
 
-    console.log("======ITEMS RECIEVED======")
-    console.log(items);
-    console.log("=========================")
-
-
-
-    const fridgesnap = {  
-      date_added: Date.now(), 
-      image: req.file,  
-      food: items,
-      uid: uid
+  FridgeSnapDB.insert(fridgesnap, function(err, img) {
+    if (err) {
+      return res.status(500).json({ message: "Failed to upload FridgeSnap", error: err.message });
     }
-
-    FridgeSnapDB.insert( fridgesnap, async function(err, img) {
-      if (err) {
-        res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
-      }
-      res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
-      console.log("done");
-      await addingRecipeFromGemini(fridgesnap.food);
-    })
+    res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
+  });
 });
 
 
