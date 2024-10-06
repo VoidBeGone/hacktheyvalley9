@@ -2,7 +2,7 @@ import fs from 'fs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GoogleAIFileManager } from '@google/generative-ai/server';
 
-const apiKey = "AIzaSyDG2W5yrCe-nWTeHVXaZfoLHal6b7foUvo"
+const apiKey = "AIzaSyDG2W5yrCe-nWTeHVXaZfoLHal6b7foUvo";
 const genAI = new GoogleGenerativeAI(apiKey);
 const fileManager = new GoogleAIFileManager(apiKey);
 

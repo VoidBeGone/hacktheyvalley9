@@ -8,7 +8,7 @@ const upload = multer({ dest: './uploads/' });
 import { run } from './foodClassifier.mjs';
 import {runrecipe } from "./recipeRecommender.mjs";
 
-const PORT = 4000;
+const PORT = 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -16,28 +16,22 @@ app.use(express.json());
  
 app.use(express.static("static"));
 
-
+const FridgeSnapDB = new Datastore({ filename: './db/fridgesnap.db', autoload: true });
 const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
 const recipes = new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData: true });
 
 async function addingFromGemini(file) {
   try {
-    // Assuming run is an async function
     const output = await run(file);
     console.log(output);
     // Check if the output is valid and has the expected structure
     if (output && output.Foods) {
-      output.Foods.forEach(async function(fooditem) {
-        try {
-          // Assuming `foods.insert` is a function that inserts data into a database
-          const food = await foods.insert(fooditem); // Use async/await for better error handling
-
-        } catch (err) {
-          console.error('Failed to add food item:', err);
-          // Handle the error appropriately, e.g., return an error response in an API
-        }
-      });
-      addingRecipeFromGemini();
+      const uid = 0;
+      const uid_food = { uid: uid, foos: output.Foods };
+      await foods.insert(uid_food);
+      console.log("food inserted for uid " + uid);
+      return output.Foods;
+      //addingRecipeFromGemini();
     } else {
       console.error('Output structure is incorrect:', output);
     }
@@ -46,17 +40,18 @@ async function addingFromGemini(file) {
   }
 }
 
-async function addingRecipeFromGemini() {
+async function addingRecipeFromGemini(food) {
   // Fetch food items from the database
-  foods.find({}).exec((err, foodall) => {
-    if (err) {
-      console.error("Error fetching food data:", err);
-      return;
-    }
-
+  
+    console.log(food)
     // Running the recipe generation
-    runrecipe(foodall)
+    runrecipe(food)
       .then(recipereturn => {
+        // if no food found
+        if (recipereturn.startsWith("Please")) {
+          console.log("Did not find any food in the image");
+          return;
+        }
         // Insert the generated recipe into the database
         return new Promise((resolve, reject) => {
           recipes.insert({ recipe: recipereturn }, (err, newDoc) => {
@@ -75,32 +70,7 @@ async function addingRecipeFromGemini() {
         // Handle any errors in the recipe generation or insertion process
         console.error("Error in the recipe generation or insertion process:", err);
       });
-  });
-}
-
-
-
-
-app.use(function (req, res, next) {
-  console.log("HTTP request", req.method, req.url, req.body);
-  next();
-});
-
-// dbs
-
-const FridgeSnapDB = new Datastore({ filename: './db/fridgesnap.db', autoload: true });
-
-//talking with the GOOGLE AI 
-
-app.post("/api/documents/",upload.array('picture'), function(req,res,next){ 
-  req.files.forEach(function(file) {
-      addingPhotoToDB(file,function(returnvalue){
-        if (returnvalue === -1){return res.status(500).send("error adding image into database ");}
-        return res.redirect("/");
-      });
-  })
-});
-
+    }
 
 
 //retriving photo from database 
@@ -111,26 +81,23 @@ app.get("/api/fridgesnap/:id/images/:count", function(req,res,next){
   }); 
 });
 
-app.get("/api/images/retriving/:imageid", function(req,res,next){
-  DB.findOne({_id:imageid}, function(err, photo){
-    if (err) return res.status(500).send("cannot retrieve image in database");
-    res.setHeader('Content-Type', photo.mimetype);
-    return res.sendFile(image.path, {root:"./"});
-  })
-});
-
-
 // create
 
 app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
 
     console.log(req.body);
 
-    
-    const items = req.body.items;
+
+    const items = await(addingFromGemini(req.file.path));
+
+    console.log("======ITEMS RECIEVED======")
+    console.log(items);
+    console.log("=========================")
+
+
     const uid = req.body.uid;
 
-    const fridgesnap = { 
+    const fridgesnap = {  
       date_added: Date.now(), 
       image: req.file,  
       food: items,
@@ -142,13 +109,39 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
         res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
       }
       res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
+      console.log("done");
+      addingRecipeFromGemini();
     })
 });
 
+
+app.get("/api/fridgesnap/:id/generate_recipe", async (req, res) => {
+  FridgeSnapDB.findOne({ _id: req.params.id }, function(err, snap) {
+    const uid = uid;
+    addingRecipeFromGemini();
+  })
+})
+
 // read
+app.get("/api/users/:uid/food/generate_recipe", async (req, res) => { 
+  food.findOne( {uid: req.params.uid}, function(err, uid_food) {
+      addingRecipeFromGemini(uid_food.food)
+        .then((rec) => res.json(rec))
+        .catch((err) => res.status(500).end("stupid generation error: "+err.message));
+  })
+});
+
+
+app.get("/api/users/:uid/recipes", async (req, res) => {
+  recipes.find( {uid: req.params.uid}, function(err, recs) {
+    if (err)
+      return res.status(500).end("Error getting" + req.params.uid + " recipes");
+    res.json(recs);
+  })
+})
 
 app.get("/api/users/:uid/fridgesnaps", async (req, res) => {
-    FridgeSnapDB.find({ }, function(err, snaps) {
+    FridgeSnapDB.find( { uid: req.params.uid }, function(err, snaps) {
       console.log(snaps);
       res.json(snaps);
     })

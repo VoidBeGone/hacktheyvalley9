@@ -64,3 +64,7 @@ jest-html-reporters-*.html
 *.zip
 *.bak
 *.tmp
+/uploads
+/db
+/db
+*.db
