@@ -54,6 +54,7 @@ export async function run(inputfile) {
     });
 
     // Fix the MIME type and file path and upload the file
+    //"food.png"
     const filePart1 = await uploadToGemini(inputfile, "image/png");
     console.log(filePart1);
 
@@ -86,5 +87,5 @@ export async function run(inputfile) {
     console.error('Error reading file or sending message:', error);
   }
 }
-
+run("foodtest.jpg");
 // Run the function
