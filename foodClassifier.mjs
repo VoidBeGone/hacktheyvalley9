@@ -79,13 +79,10 @@ export async function run(inputfile) {
         },
       },
     ]);
-
-    console.log('Message sent:', result);
-    console.log(result.response.text());
-    return result;
+    
+    return JSON.parse(result.response.text());
   } catch (error) {
     console.error('Error reading file or sending message:', error);
   }
 }
-run("redbull.heic");
 // Run the function
