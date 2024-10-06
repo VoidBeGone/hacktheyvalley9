@@ -78,7 +78,7 @@ const firebaseConfig = {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
   
-    auth.signInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(email, password)  
       .then(userCredential => {
         loginModal.style.display = 'none';
         loginBtn.style.display = 'none';
@@ -156,7 +156,7 @@ const firebaseConfig = {
     
         loading = true;
 
-        const uid = 0;
+        const uid = auth.currentUser.uid;
 
         getFridgeSnaps(uid, onError, function(snaps) {
             //snaps = generateMockData(type);

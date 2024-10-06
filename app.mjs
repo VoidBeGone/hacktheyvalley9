@@ -20,14 +20,13 @@ const FridgeSnapDB = new Datastore({ filename: './db/fridgesnap.db', autoload: t
 const foods = new Datastore({ filename: 'db/food.db', autoload: true, timestampData : true});
 const recipes = new Datastore({ filename: 'db/recipe.db', autoload: true, timestampData: true });
 
-async function addingFromGemini(file) {
+async function addingFromGemini(file, uid) {
   try {
     const output = await run(file);
     console.log(output);
     // Check if the output is valid and has the expected structure
     if (output && output.Foods) {
-      const uid = 0;
-      const uid_food = { uid: uid, foos: output.Foods };
+      const uid_food = { uid: uid, foods: output.Foods };
       await foods.insert(uid_food);
       console.log("food inserted for uid " + uid);
       return output.Foods;
@@ -88,7 +87,7 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
 
   const uid = req.body.uid;
 
-    const items = await(addingFromGemini(req.file.path));
+    const items = await(addingFromGemini(req.file.path, uid));
 
     console.log("======ITEMS RECIEVED======")
     console.log(items);
@@ -103,21 +102,24 @@ app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) =>
       uid: uid
     }
 
-    FridgeSnapDB.insert( fridgesnap, function(err, img) {
+    FridgeSnapDB.insert( fridgesnap, async function(err, img) {
       if (err) {
         res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
       }
       res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
       console.log("done");
-      addingRecipeFromGemini();
+      await addingRecipeFromGemini(fridgesnap.food);
     })
 });
 
 
 app.get("/api/fridgesnap/:id/generate_recipe", async (req, res) => {
-  FridgeSnapDB.findOne({ _id: req.params.id }, function(err, snap) {
-    const uid = uid;
-    addingRecipeFromGemini();
+  FridgeSnapDB.findOne({ _id: req.params.id }, async function(err, snap) {
+    if (err) {
+      return res.status(500).end("erro generating recipe");
+    }
+    const food = await addingRecipeFromGemini(snap.food);
+    return food;
   })
 })
 
@@ -129,7 +131,6 @@ app.get("/api/users/:uid/food/generate_recipe", async (req, res) => {
         .catch((err) => res.status(500).end("stupid generation error: "+err.message));
   })
 });
-
 
 app.get("/api/users/:uid/recipes", async (req, res) => {
   recipes.find( {uid: req.params.uid}, function(err, recs) {

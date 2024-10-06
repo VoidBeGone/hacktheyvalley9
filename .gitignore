@@ -68,3 +68,4 @@ jest-html-reporters-*.html
 /db
 /db
 *.db
+*.db

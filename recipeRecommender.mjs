@@ -78,6 +78,7 @@ function extractFirstRecipe(recipeText) {
 
 
 export async function runrecipe(inputvalue) {
+  console.log(inputvalue);
   const ingredientsList = inputvalue.map(item => item.name).join(", ");
 
   const chatSession = model.startChat({
