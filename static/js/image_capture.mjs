@@ -16,9 +16,7 @@ photoInput.addEventListener('change', function(event) {
     // Create a FormData object to send the file to the server
     const formData = new FormData();
     formData.append('picture', file); // 'picture' should match the upload.single('picture') on the backend
-    formData.append('items', items); // Append other fields (e.g., items)
-    formData.append('uid', uid); // Append the UID or other metadata
-
+    
     // Send the photo to the server using fetch
     fetch('/api/fridgesnap/upload', {
       method: 'POST',
