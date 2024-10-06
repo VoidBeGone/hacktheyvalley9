@@ -34,13 +34,6 @@ const firebaseConfig = {
   const contentArea = document.getElementById('content-area');
   const addBtn = document.getElementById('add-btn');
   
-  document.addEventListener('DOMContentLoaded', function() {
-      if (addBtn) {
-          addBtn.addEventListener('click', () => {
-          window.location.href = 'imageCapture.html';
-          });
-      }
-      });
       
     loginModal.addEventListener("click", (event) => {
         // Check if the clicked target is the modal itself, not the content
@@ -143,9 +136,6 @@ const firebaseConfig = {
     loadRecipes();
   });
   
-  addBtn.addEventListener('click', () => {
-      loadPage('addPhoto');
-  });
   
 
   // Load images and text dynamically (Infinite scroll)

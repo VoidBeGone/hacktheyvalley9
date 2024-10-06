@@ -248,11 +248,11 @@ button {
 } 
 
 .bottombutton2{
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 0 0;
 }
 
 .bottombutton1{
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 0;
 }
 
 .helperstuff{

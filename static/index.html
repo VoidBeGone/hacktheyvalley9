@@ -8,6 +8,7 @@
   <script type="module" src="./js/index.mjs"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script type="module" src="./js/image_capture.mjs"></script>
 </head>
 <body>
 
@@ -44,10 +45,12 @@
 
     <!-- Footer with buttons -->
     <div class="footer">
-      <button id="food-btn" class="bottombutton1" class = "helperstuff">Food</button>
-      <button class="add-photo-btn" id="add-btn " class = "helperstuff">+</button>
-      <button id="recipe-btn" class="bottombutton2" class = "helperstuff">Recipes</button>
+      <button id="food-btn" class="bottombutton1 helperstuff">Food</button>
+      <button class="add-photo-btn helperstuff" id="add-btn">+</button>
+      <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none;">
+      <button id="recipe-btn" class="bottombutton2 helperstuff">Recipes</button>
     </div>
+    
 
   </body>
 </html>

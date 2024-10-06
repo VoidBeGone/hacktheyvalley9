@@ -121,28 +121,26 @@ app.get("/api/images/retriving/:imageid", function(req,res,next){
 
 
 // create
-
 app.post("/api/fridgesnap/upload", upload.single("picture"), async (req, res) => {
+  console.log('File received:', req.file); // Log the file information
+  console.log('Request body:', req.body);  // Log the additional form data (items, uid)
 
-    console.log(req.body);
+  const items = req.body.items;
+  const uid = req.body.uid;
 
-    
-    const items = req.body.items;
-    const uid = req.body.uid;
+  const fridgesnap = { 
+    date_added: Date.now(), 
+    image: req.file,  // The uploaded file information
+    food: items,
+    uid: uid
+  }
 
-    const fridgesnap = { 
-      date_added: Date.now(), 
-      image: req.file,  
-      food: items,
-      uid: uid
+  FridgeSnapDB.insert(fridgesnap, function(err, img) {
+    if (err) {
+      return res.status(500).json({ message: "Failed to upload FridgeSnap", error: err.message });
     }
-
-    FridgeSnapDB.insert( fridgesnap, function(err, img) {
-      if (err) {
-        res.status(500).json({ message: "Failed to upload FridgeSnap", error: error.message });
-      }
-      res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
-    })
+    res.status(201).json({ message: "FridgeSnap uploaded successfully", data: fridgesnap });
+  });
 });
 
 // read
